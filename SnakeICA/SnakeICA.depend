@@ -2067,14 +2067,14 @@
 	<string>
 	<vector>
 
-1494012927 c:\users\aziz\documents\github\snakegame\snakeica\snake.h
+1494016798 c:\users\aziz\documents\github\snakegame\snakeica\snake.h
 	<iostream>
 	<string>
 	<SFML/Graphics.hpp>
 	<cstdlib>
 	<list>
 
-1494012119 source:c:\users\aziz\documents\github\snakegame\snakeica\game.cpp
+1494016882 source:c:\users\aziz\documents\github\snakegame\snakeica\game.cpp
 	<iostream>
 	<cstdlib>
 	<SFML/Graphics.hpp>
@@ -2096,7 +2096,7 @@
 	"Collectable.h"
 	"Game.h"
 
-1494013957 source:c:\users\aziz\documents\github\snakegame\snakeica\snake.cpp
+1494017041 source:c:\users\aziz\documents\github\snakegame\snakeica\snake.cpp
 	"Snake.h"
 	<SFML/Graphics.hpp>
 	<iostream>

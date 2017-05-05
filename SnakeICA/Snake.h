@@ -30,6 +30,7 @@ class Snake
 //        bool isDead();
         void hasDied();
         void addSegment(unsigned int amount);
+        bool SegmentCollider();
         std::string getScore();
 
 
@@ -40,12 +41,13 @@ class Snake
         sf::Vector2f s_pos{400,300};
         sf::RectangleShape s_head;
         int const snakespeed {20};
-        sf::Clock clock;
+        sf::Clock clock, colClock;
         eDir s_dir = eDir::eNorth;
         int s_score{0};
         int s_glue{0};
         bool isDead = false;
         std::list<sf::RectangleShape*> Segments;
+        bool ColliderActive = false;
 
 };
 

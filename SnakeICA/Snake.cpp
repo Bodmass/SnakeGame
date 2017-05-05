@@ -13,9 +13,8 @@ Snake::Snake(std::string name):s_name(name)
     s_head.setSize(sf::Vector2f(20,20));
     s_head.setPosition(s_pos);
      s_head.setFillColor(sf::Color::Red);
-     addSegment(1);
-     addSegment(1);
-     addSegment(1);
+     addSegment(4);
+
     //setColour();
 
     //ctor
@@ -59,12 +58,37 @@ void Snake::setDirection(eDir dir)
 
 void Snake::Update()
 {
+    if(colClock.getElapsedTime().asSeconds() > 3)
+    {
+        ColliderActive = true;
+    }
     //std::cout<<clock.getElapsedTime().asMilliseconds();
 //    if(isDead() == false)
     if(!isDead)
     {
-        sf::Vector2f oldpos = s_pos;
+        SegmentCollider();
+
+
         if(clock.getElapsedTime().asMilliseconds() > 100){
+            sf::Vector2f oldpos = s_pos;
+            sf::Vector2f oldsegpos;
+            bool movefirst = false;
+            for(sf::RectangleShape* Snake:Segments)
+            {
+                //oldsegpos = Snake->getPosition();
+                if(!movefirst)
+                {
+                    oldsegpos = oldpos;
+                    Snake->setPosition(oldpos);
+                    movefirst = true;
+                }
+                else
+                {
+                    sf::Vector2f tmp = Snake->getPosition();
+                    Snake->setPosition(oldsegpos);
+                    oldsegpos = tmp;
+                }
+            }
             if (s_dir == eDir::eWest)
                 s_pos.x+=snakespeed;
             else if (s_dir == eDir::eEast)
@@ -74,21 +98,6 @@ void Snake::Update()
             else if (s_dir == eDir::eSouth)
                 s_pos.y+=snakespeed;
             clock.restart();
-        }
-        sf::Vector2f oldsegpos;
-        bool movefirst = false;
-        for(sf::RectangleShape* Snake:Segments)
-        {
-            oldsegpos = Snake->getPosition();
-            if(!movefirst)
-            {
-                Snake->setPosition(oldpos);
-                movefirst = true;
-            }
-            else
-            {
-                Snake->setPosition(oldsegpos);
-            }
         }
 
     s_head.setPosition(s_pos);
@@ -102,13 +111,36 @@ sf::RectangleShape* Snake::getHead()
 
 void Snake::addSegment(unsigned int amount)
 {
+    if(!amount){
+        return;
+    }
+    std::cout<<"Segments left"<<amount<<std::endl;
+    amount--;
+    addSegment(amount);
     sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
+    Segment->setFillColor(sf::Color::Red);
     Segments.push_back(Segment);
 }
 
 void Snake::hasDied()
 {
     isDead = true;
+}
+
+bool Snake::SegmentCollider()
+{
+    if(ColliderActive)
+    {
+        for(sf::RectangleShape* Shape:Segments)
+        {
+            if(this->getHead()->getGlobalBounds().intersects(Shape->getGlobalBounds()))
+            {
+                this->hasDied();
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 //bool Snake::isDead()

@@ -137,7 +137,7 @@ void Game::render()
 
 void Game::update()
 {
-
+    sf::sleep(sf::Time(sf::milliseconds(10)));
     m_snake.Update();
     CheckCollisions(&m_snake);
 
