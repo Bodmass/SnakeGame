@@ -9,7 +9,7 @@ class Collectable
 {
     public:
         ///Initialiser for Collectable to take a name, amount to add to score and amount to grow.
-        Collectable(std::string name, int score, int grow);
+        Collectable(std::string name, int score, int grow, sf::Texture&dir);
         virtual ~Collectable();
         void Render (sf::RenderWindow &window);
         ///Return the collectable shape
@@ -25,8 +25,6 @@ class Collectable
         std::string c_name;
         sf::Vector2f c_pos{100,100};
         sf::RectangleShape c_obj;
-        ///Texture for the Collectable (WIP)
-        sf::Texture CTexture;
         ///Amount to increase score
         int scoreadd{5};
         ///Amount to segment snake by

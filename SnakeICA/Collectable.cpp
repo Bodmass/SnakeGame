@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Snake.h"
 
-Collectable::Collectable(std::string name, int score, int grow):c_name(name), scoreadd(score), growth(grow)
+Collectable::Collectable(std::string name, int score, int grow, sf::Texture&dir):c_name(name), scoreadd(score), growth(grow)
 {
     c_obj.setSize(sf::Vector2f(20,20));
     float rx = (rand() %(680/20)) * 20 + 40;
@@ -10,10 +10,11 @@ Collectable::Collectable(std::string name, int score, int grow):c_name(name), sc
     c_pos.x = rx;
     c_pos.y = ry;
     c_obj.setPosition(c_pos);
-    if (!CTexture.loadFromFile("Textures/Arena.png"))
-        std::cout<<"Loading Apple Texture Failed"<<std::endl;
-        //return EXIT_FAILURE;
-    c_obj.setTexture(&CTexture,true);
+    //if (!CTexture.loadFromFile("Textures/Arena.png"))
+        //std::cout<<"Loading Apple Texture Failed"<<std::endl;
+    //return EXIT_FAILURE;
+    //CTexture.loadFromFile(dir);
+    c_obj.setTexture(&dir,true);
     //ctor
 }
 
@@ -51,6 +52,7 @@ int Collectable::Eat()
 
 void Collectable::Render(sf::RenderWindow &window)
 {
+//    c_obj.setTexture(&CTexture,true);
     window.draw(c_obj);
     //setColour();
 }

@@ -179,6 +179,16 @@ bool Game::CheckCollisions(Snake* snake)
 
 void Game::Run()
 {
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/Apple.png");
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/Pear.png");
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/Banana.png");
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/Strawberry.png");
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/Kiwi.png");
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Top
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom
@@ -189,11 +199,11 @@ void Game::Run()
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(20,600))); //Right
     Walls.back().setPosition(sf::Vector2f(780,0));
-    Collectables.push_back(Collectable("Apple", 5, 1));
-    Collectables.push_back(Collectable("Pear", 10, 2));
-    Collectables.push_back(Collectable("Banana", 20, 3));
-    Collectables.push_back(Collectable("Strawberry", 40, 4));
-    Collectables.push_back(Collectable("Kiwi", 80, 5));
+    Collectables.push_back(Collectable("Apple", 5, 1, Textures[0]));
+    Collectables.push_back(Collectable("Pear", 10, 2, Textures[1]));
+    Collectables.push_back(Collectable("Banana", 20, 3, Textures[2]));
+    Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3]));
+    Collectables.push_back(Collectable("Kiwi", 80, 5, Textures[4]));
 
 
 

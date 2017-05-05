@@ -78,9 +78,9 @@ Collaboration diagram for Collectable:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af4411c0853dbe53fc4074b873197db3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#af4411c0853dbe53fc4074b873197db3f">Collectable</a> (std::string name, int score, int grow)</td></tr>
-<tr class="memdesc:af4411c0853dbe53fc4074b873197db3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialiser for <a class="el" href="class_collectable.html">Collectable</a> to take a name, amount to add to score and amount to grow.  <a href="#af4411c0853dbe53fc4074b873197db3f">More...</a><br /></td></tr>
-<tr class="separator:af4411c0853dbe53fc4074b873197db3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af86ad1035ad7973460582d7c300eb585"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#af86ad1035ad7973460582d7c300eb585">Collectable</a> (std::string name, int score, int grow, sf::Texture &amp;dir)</td></tr>
+<tr class="memdesc:af86ad1035ad7973460582d7c300eb585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialiser for <a class="el" href="class_collectable.html">Collectable</a> to take a name, amount to add to score and amount to grow.  <a href="#af86ad1035ad7973460582d7c300eb585">More...</a><br /></td></tr>
+<tr class="separator:af86ad1035ad7973460582d7c300eb585"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a420214e6656c670e88885b6f9716547b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a420214e6656c670e88885b6f9716547b">~Collectable</a> ()</td></tr>
 <tr class="separator:a420214e6656c670e88885b6f9716547b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac425bb27c527e22cbd7f7c241b8fafdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#ac425bb27c527e22cbd7f7c241b8fafdd">Render</a> (sf::RenderWindow &amp;window)</td></tr>
@@ -99,8 +99,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aaa57f6c9fd95323d020c57a884e9c743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af4411c0853dbe53fc4074b873197db3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4411c0853dbe53fc4074b873197db3f">&#9670;&nbsp;</a></span>Collectable()</h2>
+<a id="af86ad1035ad7973460582d7c300eb585"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af86ad1035ad7973460582d7c300eb585">&#9670;&nbsp;</a></span>Collectable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,7 +121,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>grow</em>&#160;</td>
+          <td class="paramname"><em>grow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Texture &amp;&#160;</td>
+          <td class="paramname"><em>dir</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

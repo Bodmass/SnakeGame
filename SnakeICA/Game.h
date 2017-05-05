@@ -38,6 +38,8 @@ class Game
         Snake & m_snake;
         ///Check the Collisions with the Snake and walls.
         bool CheckCollisions(Snake* snake);
+        ///Textures Vector for the Collectable
+        std::vector<sf::Texture> Textures;
 
 };
 
