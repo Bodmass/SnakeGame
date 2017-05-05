@@ -95,19 +95,19 @@ void Game::processEvents()
             switch(event.key.code)
             {
             case sf::Keyboard::Right:
-                std::cout << "Direction set to Right" << std::endl;
+                //std::cout << "Direction set to Right" << std::endl;
                 m_snake.setDirection(eDir::eWest);
                 break;
             case sf::Keyboard::Left:
-                std::cout << "Direction set to Left" << std::endl;
+                //std::cout << "Direction set to Left" << std::endl;
                 m_snake.setDirection(eDir::eEast);
                 break;
             case sf::Keyboard::Up:
-                std::cout << "Direction set to Up" << std::endl;
+                //std::cout << "Direction set to Up" << std::endl;
                 m_snake.setDirection(eDir::eNorth);
                 break;
             case sf::Keyboard::Down:
-                std::cout << "Direction set to Down" << std::endl;
+                //std::cout << "Direction set to Down" << std::endl;
                 m_snake.setDirection(eDir::eSouth); //= eDir::eSouth;
                 break;
             default:
@@ -145,6 +145,14 @@ void Game::update()
     sf::sleep(sf::Time(sf::milliseconds(10)));
     m_snake.Update();
     CheckCollisions(&m_snake);
+    for(int i = 0; i<Collectables.size(); i++)
+    {
+        if(Collectables[i].isEaten())
+        {
+            Collectables.erase(Collectables.begin() + i);
+
+        }
+    }
 
 }
 
@@ -155,6 +163,14 @@ bool Game::CheckCollisions(Snake* snake)
         if(snake->getHead()->getGlobalBounds().intersects(Shape.getGlobalBounds()))
         {
             snake->hasDied();
+            return true;
+        }
+    }
+    for(Collectable& Shape:Collectables)
+    {
+        if(snake->getHead()->getGlobalBounds().intersects(Shape.getCollectable()->getGlobalBounds()))
+        {
+            snake->addSegment(Shape.Eat());
             return true;
         }
     }
@@ -173,7 +189,13 @@ void Game::Run()
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(20,600))); //Right
     Walls.back().setPosition(sf::Vector2f(780,0));
-    Collectables.push_back(Collectable("Apple"));
+    Collectables.push_back(Collectable("Apple", 5, 1));
+    Collectables.push_back(Collectable("Pear", 10, 2));
+    Collectables.push_back(Collectable("Banana", 20, 3));
+    Collectables.push_back(Collectable("Strawberry", 40, 4));
+    Collectables.push_back(Collectable("Kiwi", 80, 5));
+
+
 
     while(m_window.isOpen())
     {

@@ -118,6 +118,7 @@ void Snake::addSegment(unsigned int amount)
     addSegment(amount);
     sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
     Segment->setFillColor(sf::Color::Red);
+    Segment->setPosition(sf::Vector2f(-20,-20)); //hide out of bounds until spawned onto snake
     Segments.push_back(Segment);
 }
 

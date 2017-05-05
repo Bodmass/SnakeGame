@@ -8,11 +8,13 @@
 class Collectable
 {
     public:
-        Collectable(std::string name);
+        Collectable(std::string name, int score, int grow);
         virtual ~Collectable();
         void Render (sf::RenderWindow &window);
         sf::RectangleShape* getCollectable();
+        bool isEaten();
         int addScore();
+        int Eat();
 
     private:
         std::string c_name;
@@ -21,6 +23,7 @@ class Collectable
         sf::Texture CTexture;
         int scoreadd{5};
         int growth{5};
+        bool eaten = false;
 };
 
 /*
