@@ -4,6 +4,14 @@
 #include "Collectable.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <sstream>
+
+template<typename T>
+std::string toString(T val){
+    std::stringstream ss;
+    ss << val;
+    return ss.str();
+}
 
 class Game
 {
@@ -38,6 +46,8 @@ class Game
         Snake & m_snake;
         ///Check the Collisions with the Snake and walls.
         bool CheckCollisions(Snake* snake);
+        ///Timer Clock
+        sf::Clock MainClock;
         ///Textures Vector for the Collectable
         std::vector<sf::Texture> Textures;
 

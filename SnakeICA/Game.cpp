@@ -71,6 +71,13 @@ void Game::createUI()
 void Game::updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText)
 {
     //m_window.draw(BG);
+    if(MainClock.getElapsedTime().asSeconds() >= 90)
+    {
+        TimerText.setString("0");
+    }
+    else
+        TimerText.setString(toString(90-(int)(MainClock.getElapsedTime().asSeconds())));
+
     m_window.draw(GlueText);
     m_window.draw(AISText);
     m_window.draw(PlayerSText);
@@ -125,6 +132,7 @@ void Game::render()
     m_window.clear();
 
     createUI();
+
     for(sf::RectangleShape& Shape:Walls)
     {
         m_window.draw(Shape);
