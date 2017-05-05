@@ -3,6 +3,7 @@
 #include "Snake.h"
 #include "Collectable.h"
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Game
 {
@@ -15,6 +16,7 @@ class Game
     protected:
 
     private:
+        std::vector<sf::RectangleShape> Walls;
         void processEvents();
         void update();
         void render();
@@ -22,6 +24,7 @@ class Game
         void updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText);
         sf::RenderWindow m_window;
         Snake & m_snake;
+        bool CheckCollisions(Snake* snake);
 };
 
 #endif // GAME_H

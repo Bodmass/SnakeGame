@@ -10,9 +10,13 @@
 Snake::Snake(std::string name):s_name(name)
 {
     std::cout<<s_name<<" constructed."<<std::endl;
-    s_head.setSize(sf::Vector2f(16,16));
+    s_head.setSize(sf::Vector2f(20,20));
     s_head.setPosition(s_pos);
-    setColour();
+     s_head.setFillColor(sf::Color::Red);
+     addSegment(1);
+     addSegment(1);
+     addSegment(1);
+    //setColour();
 
     //ctor
 }
@@ -57,8 +61,9 @@ void Snake::Update()
 {
     //std::cout<<clock.getElapsedTime().asMilliseconds();
 //    if(isDead() == false)
-    if(isDead == false)
+    if(!isDead)
     {
+        sf::Vector2f oldpos = s_pos;
         if(clock.getElapsedTime().asMilliseconds() > 100){
             if (s_dir == eDir::eWest)
                 s_pos.x+=snakespeed;
@@ -70,9 +75,35 @@ void Snake::Update()
                 s_pos.y+=snakespeed;
             clock.restart();
         }
+        sf::Vector2f oldsegpos;
+        bool movefirst = false;
+        for(sf::RectangleShape* Snake:Segments)
+        {
+            oldsegpos = Snake->getPosition();
+            if(!movefirst)
+            {
+                Snake->setPosition(oldpos);
+                movefirst = true;
+            }
+            else
+            {
+                Snake->setPosition(oldsegpos);
+            }
+        }
 
     s_head.setPosition(s_pos);
     }
+}
+
+sf::RectangleShape* Snake::getHead()
+{
+    return &s_head;
+}
+
+void Snake::addSegment(unsigned int amount)
+{
+    sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
+    Segments.push_back(Segment);
 }
 
 void Snake::hasDied()
@@ -94,5 +125,9 @@ void Snake::hasDied()
 void Snake::Render(sf::RenderWindow &window)
 {
     window.draw(s_head);
+    for(sf::RectangleShape* Snake:Segments)
+    {
+        window.draw(*Snake);
+    }
     //setColour();
 }

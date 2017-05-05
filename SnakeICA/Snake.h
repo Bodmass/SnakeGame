@@ -4,6 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include <list>
 
 enum class eDir
 {
@@ -25,8 +26,10 @@ class Snake
         void setColour();
         void setDirection(eDir dir);
         sf::Vector2f getPos();
+        sf::RectangleShape* getHead();
 //        bool isDead();
         void hasDied();
+        void addSegment(unsigned int amount);
         std::string getScore();
 
 
@@ -36,12 +39,13 @@ class Snake
         std::string s_name;
         sf::Vector2f s_pos{400,300};
         sf::RectangleShape s_head;
-        int const snakespeed {16};
+        int const snakespeed {20};
         sf::Clock clock;
         eDir s_dir = eDir::eNorth;
         int s_score{0};
         int s_glue{0};
         bool isDead = false;
+        std::list<sf::RectangleShape*> Segments;
 
 };
 
