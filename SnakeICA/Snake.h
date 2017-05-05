@@ -18,19 +18,30 @@ enum class eDir
 class Snake
 {
     public:
+        ///Init's Snake Constructor
         Snake(std::string name);
         virtual ~Snake();
+        ///Render's Snake to the specified Render Window
         void Render (sf::RenderWindow &window);
         //sf::RectangleShape getHead();
+        ///Snakes Update Function
         void Update();
+        ///Sets the colour of the Snake
         void setColour();
+        ///Sets the Direction of the snake (North, East, South, West)
         void setDirection(eDir dir);
+        ///Returns the position of the snake's head
         sf::Vector2f getPos();
+        ///Returns the snake's head
         sf::RectangleShape* getHead();
 //        bool isDead();
+        ///Sets the death state of the snake
         void hasDied();
+        ///Adds a segment to the snake
         void addSegment(unsigned int amount);
+        ///Checks the collision with any of the Snake's Segments
         bool SegmentCollider();
+        ///Return the score of the snake
         std::string getScore();
 
 
@@ -38,15 +49,25 @@ class Snake
 
     private:
         std::string s_name;
+        ///Sets snake origin
         sf::Vector2f s_pos{400,300};
+        ///Constructing the snake head
         sf::RectangleShape s_head;
+        ///Setting movement speed (relative to snake size
         int const snakespeed {20};
+        ///Setting the clock and Collider clock (for snake spawn immunity to Segments)
         sf::Clock clock, colClock;
+        ///eDir variable for direction
         eDir s_dir = eDir::eNorth;
+        ///Snakes Score
         int s_score{0};
+        ///Snakes Glue Amount
         int s_glue{0};
+        ///Snake death state
         bool isDead = false;
+        ///List of Segments
         std::list<sf::RectangleShape*> Segments;
+        ///Boolean for the Snake's Segment Immunity
         bool ColliderActive = false;
 
 };

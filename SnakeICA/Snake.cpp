@@ -55,7 +55,6 @@ void Snake::setDirection(eDir dir)
     s_dir = dir;
 }
 
-
 void Snake::Update()
 {
     if(colClock.getElapsedTime().asSeconds() > 3)
