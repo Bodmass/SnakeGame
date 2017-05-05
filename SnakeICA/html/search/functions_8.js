@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['_7ecollectable',['~Collectable',['../class_collectable.html#a420214e6656c670e88885b6f9716547b',1,'Collectable']]],
-  ['_7egame',['~Game',['../class_game.html#ae3d112ca6e0e55150d2fdbc704474530',1,'Game']]],
-  ['_7esnake',['~Snake',['../class_snake.html#a941fbaad96ee33ca3a7c30c28ca44ef8',1,'Snake']]]
+  ['segmentcollider',['SegmentCollider',['../class_snake.html#a6200fb77882139dd8733f84825cfa37a',1,'Snake']]],
+  ['setcolour',['setColour',['../class_snake.html#ae34521e54d6913b02271879aa7850223',1,'Snake']]],
+  ['setdirection',['setDirection',['../class_snake.html#a90ce538d020df4a04795bbe1e40f8793',1,'Snake']]],
+  ['snake',['Snake',['../class_snake.html#a510b4eeb13424095257127c1af25b76d',1,'Snake']]]
 ];

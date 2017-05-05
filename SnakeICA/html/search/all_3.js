@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['eat',['Eat',['../class_collectable.html#aaa57f6c9fd95323d020c57a884e9c743',1,'Collectable']]],
   ['edir',['eDir',['../_snake_8h.html#afd31813d0c7a74e85a7f7ae803eb2663',1,'Snake.h']]],
   ['eeast',['eEast',['../_snake_8h.html#afd31813d0c7a74e85a7f7ae803eb2663a15f59e3c09890596075d7643162dae87',1,'Snake.h']]],
   ['enorth',['eNorth',['../_snake_8h.html#afd31813d0c7a74e85a7f7ae803eb2663a87529287acee000afee680df70d51e3e',1,'Snake.h']]],

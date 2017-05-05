@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['collectable',['Collectable',['../class_collectable.html#a0c63ddaea83438cf2dd9b32399976be3',1,'Collectable']]]
+  ['collectable',['Collectable',['../class_collectable.html#af4411c0853dbe53fc4074b873197db3f',1,'Collectable']]]
 ];
