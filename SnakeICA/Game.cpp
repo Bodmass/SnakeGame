@@ -130,6 +130,11 @@ void Game::render()
         m_window.draw(Shape);
 
     }
+    for(Collectable& Shape:Collectables)
+    {
+        m_window.draw(*Shape.getCollectable());
+
+    }
     m_snake.Render(m_window);
     //Fruit.Render(m_window);
     m_window.display();
@@ -168,6 +173,7 @@ void Game::Run()
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(20,600))); //Right
     Walls.back().setPosition(sf::Vector2f(780,0));
+    Collectables.push_back(Collectable("Apple"));
 
     while(m_window.isOpen())
     {

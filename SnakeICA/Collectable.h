@@ -11,6 +11,7 @@ class Collectable
         Collectable(std::string name);
         virtual ~Collectable();
         void Render (sf::RenderWindow &window);
+        sf::RectangleShape* getCollectable();
         int addScore();
 
     private:

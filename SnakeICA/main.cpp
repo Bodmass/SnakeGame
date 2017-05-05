@@ -21,7 +21,6 @@ int main()
 
     //sf::Clock clock;
     Snake PlayerSnake("Snakeman");
-    Collectable Fruit("Apple");
     Game game(PlayerSnake);
 
     game.Run();

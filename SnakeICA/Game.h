@@ -21,6 +21,8 @@ class Game
     private:
         ///Vector used for walls
         std::vector<sf::RectangleShape> Walls;
+        ///Vector used for collectables
+        std::vector<Collectable> Collectables;
         void processEvents();
         ///Update the game every frame
         void update();
@@ -36,6 +38,7 @@ class Game
         Snake & m_snake;
         ///Check the Collisions with the Snake and walls.
         bool CheckCollisions(Snake* snake);
+
 };
 
 #endif // GAME_H
