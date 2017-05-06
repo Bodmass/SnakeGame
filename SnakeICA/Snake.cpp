@@ -30,6 +30,11 @@ sf::Vector2f Snake::getPos()
     return s_pos;
 }
 
+int Snake::addScore(int amount)
+{
+    s_score+=amount;
+}
+
 std::string Snake::getScore()
 {
     std::ostringstream showscore;

@@ -35,6 +35,8 @@ class Snake
         ///Returns the snake's head
         sf::RectangleShape* getHead();
 //        bool isDead();
+        ///Increases the Player Score
+        int addScore(int amount);
         ///Sets the death state of the snake
         void hasDied();
         ///Adds a segment to the snake

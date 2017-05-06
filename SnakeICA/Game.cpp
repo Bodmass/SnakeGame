@@ -178,6 +178,7 @@ bool Game::CheckCollisions(Snake* snake)
     {
         if(snake->getHead()->getGlobalBounds().intersects(Shape.getCollectable()->getGlobalBounds()))
         {
+            snake->addScore(Shape.addScore());
             snake->addSegment(Shape.Eat());
             return true;
         }
