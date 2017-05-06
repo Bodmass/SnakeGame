@@ -12,7 +12,7 @@ Snake::Snake(std::string name, sf::Texture& dir):s_name(name)
     std::cout<<s_name<<" constructed."<<std::endl;
     s_head.setSize(sf::Vector2f(20,20));
     s_head.setPosition(s_pos);
-     s_head.setFillColor(sf::Color::Red);
+     //s_head.setFillColor(sf::Color::Red);
      s_head.setTexture(&dir,true);
      m_texture = dir;
      addSegment(4); //Start the snake with a few segments
@@ -59,7 +59,7 @@ void Snake::setColour() //Sets random colour for RGB (Currently Unused)
     int iG=rand() % 155 + 100;
     int iB=rand() % 155 + 100;
 
-    #ifdef OS_Windows
+    #ifdef OS_Windows // This is a test
     s_head.setFillColor(sf::Color(iR,iG,iB,255));
     #else
     s_head.setFillColor(sf::Color(iR,iG,iB,255));

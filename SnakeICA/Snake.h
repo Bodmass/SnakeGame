@@ -73,7 +73,7 @@ class Snake
         std::list<sf::RectangleShape*> Segments;
         ///Boolean for the Snake's Segment Immunity
         bool ColliderActive = false;
-        ///
+        ///Boolean to make sure the Segment Textures have loaded. Disable after Segment Immunity ends
         bool setinittextures = true;
 
 };
