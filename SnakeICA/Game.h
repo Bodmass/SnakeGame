@@ -46,7 +46,7 @@ class Game
         Snake & m_snake;
         ///Check the Collisions with the Snake and walls.
         bool CheckCollisions(Snake* snake);
-        ///Timer Clock
+        ///Timer Clock for the Main Game
         sf::Clock MainClock;
         ///Textures Vector for the Collectable
         std::vector<sf::Texture> Textures;

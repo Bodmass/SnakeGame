@@ -70,14 +70,17 @@ void Game::createUI()
 
 void Game::updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText)
 {
-    //m_window.draw(BG);
-    if(MainClock.getElapsedTime().asSeconds() >= 90)
+
+    //Makes the Main Clock of the game count down
+    //I will be Making the Clock count up and Minus is by 90 to make it seem like the clock is counting down
+    if(MainClock.getElapsedTime().asSeconds() >= 90) //If the Main Clock has already gone over 90 seconds, force the display to 0.
     {
         TimerText.setString("0");
     }
     else
-        TimerText.setString(toString(90-(int)(MainClock.getElapsedTime().asSeconds())));
+        TimerText.setString(toString(90-(int)(MainClock.getElapsedTime().asSeconds()))); //Setting the Timer to 90 - the Main Clock
 
+    //Drawing all the UI to the screen
     m_window.draw(GlueText);
     m_window.draw(AISText);
     m_window.draw(PlayerSText);
@@ -133,12 +136,12 @@ void Game::render()
 
     createUI();
 
-    for(sf::RectangleShape& Shape:Walls)
+    for(sf::RectangleShape& Shape:Walls) //Loop through all the Walls and draws them
     {
         m_window.draw(Shape);
 
     }
-    for(Collectable& Shape:Collectables)
+    for(Collectable& Shape:Collectables) //Loop through all the Collectables and draws them
     {
         m_window.draw(*Shape.getCollectable());
 
@@ -152,8 +155,8 @@ void Game::update()
 {
     sf::sleep(sf::Time(sf::milliseconds(10)));
     m_snake.Update();
-    CheckCollisions(&m_snake);
-    for(int i = 0; i<Collectables.size(); i++)
+    CheckCollisions(&m_snake); //Check the Collision with the Walls & Collectables
+    for(int i = 0; i<Collectables.size(); i++) //Checks through all the current Collectables in the vector and checks if they've eaten, if they have been, remove it from the vector list.
     {
         if(Collectables[i].isEaten())
         {
@@ -166,9 +169,9 @@ void Game::update()
 
 bool Game::CheckCollisions(Snake* snake)
 {
-    for(sf::RectangleShape& Shape:Walls)
+    for(sf::RectangleShape& Shape:Walls) //Loop through the walls
     {
-        if(snake->getHead()->getGlobalBounds().intersects(Shape.getGlobalBounds()))
+        if(snake->getHead()->getGlobalBounds().intersects(Shape.getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the walls, kill the snake.
         {
             snake->hasDied();
             return true;
@@ -176,7 +179,7 @@ bool Game::CheckCollisions(Snake* snake)
     }
     for(Collectable& Shape:Collectables)
     {
-        if(snake->getHead()->getGlobalBounds().intersects(Shape.getCollectable()->getGlobalBounds()))
+        if(snake->getHead()->getGlobalBounds().intersects(Shape.getCollectable()->getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the collectables, eat it and add the score.
         {
             snake->addScore(Shape.addScore());
             snake->addSegment(Shape.Eat());
@@ -188,16 +191,17 @@ bool Game::CheckCollisions(Snake* snake)
 
 void Game::Run()
 {
+    //Setting up Vectors for the Textures, Walls and Collectables.
     Textures.push_back(sf::Texture());
-    Textures.back().loadFromFile("Textures/Apple.png");
+    Textures.back().loadFromFile("Textures/Apple.png"); //Textures[0]
     Textures.push_back(sf::Texture());
-    Textures.back().loadFromFile("Textures/Pear.png");
+    Textures.back().loadFromFile("Textures/Pear.png"); //Textures[1]
     Textures.push_back(sf::Texture());
-    Textures.back().loadFromFile("Textures/Banana.png");
+    Textures.back().loadFromFile("Textures/Banana.png"); //Textures[2]
     Textures.push_back(sf::Texture());
-    Textures.back().loadFromFile("Textures/Strawberry.png");
+    Textures.back().loadFromFile("Textures/Strawberry.png"); //Textures[3]
     Textures.push_back(sf::Texture());
-    Textures.back().loadFromFile("Textures/Kiwi.png");
+    Textures.back().loadFromFile("Textures/Kiwi.png"); //Textures[4]
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Top
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom
@@ -208,7 +212,7 @@ void Game::Run()
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(20,600))); //Right
     Walls.back().setPosition(sf::Vector2f(780,0));
-    Collectables.push_back(Collectable("Apple", 5, 1, Textures[0]));
+    Collectables.push_back(Collectable("Apple", 5, 1, Textures[0])); //Pushes back the collectable with the Collectable Name, Score to Add, Segment Amount and the Texture to load.
     Collectables.push_back(Collectable("Pear", 10, 2, Textures[1]));
     Collectables.push_back(Collectable("Banana", 20, 3, Textures[2]));
     Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3]));

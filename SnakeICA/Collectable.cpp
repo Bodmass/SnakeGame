@@ -23,22 +23,22 @@ Collectable::~Collectable()
     //dtor
 }
 
-sf::RectangleShape* Collectable::getCollectable()
+sf::RectangleShape* Collectable::getCollectable() //Return the Collectable Shape
 {
     return &c_obj;
 }
 
-int Collectable::addScore()
+int Collectable::addScore() //Return the amount to add
 {
    return scoreadd;
 }
 
-bool Collectable::isEaten()
+bool Collectable::isEaten() //Check if the collectable has been eaten
 {
     return eaten;
 }
 
-int Collectable::Eat()
+int Collectable::Eat() //Eats the fruit and grow the amount specified, if its already been eaten, don't grow from it.
 {
     if(!eaten)
     {

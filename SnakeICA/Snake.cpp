@@ -13,7 +13,7 @@ Snake::Snake(std::string name):s_name(name)
     s_head.setSize(sf::Vector2f(20,20));
     s_head.setPosition(s_pos);
      s_head.setFillColor(sf::Color::Red);
-     addSegment(4);
+     addSegment(4); //Start the snake with a few segments
 
     //setColour();
 
@@ -25,17 +25,17 @@ Snake::~Snake()
     //dtor
 }
 
-sf::Vector2f Snake::getPos()
+sf::Vector2f Snake::getPos() //Return the position of the snake
 {
     return s_pos;
 }
 
-int Snake::addScore(int amount)
+int Snake::addScore(int amount) //adds score to the snake
 {
     s_score+=amount;
 }
 
-std::string Snake::getScore()
+std::string Snake::getScore() //Returns the Score into a string
 {
     std::ostringstream showscore;
     long num = s_score;
@@ -45,7 +45,7 @@ std::string Snake::getScore()
     return showscore.str();
 }
 
-void Snake::setColour()
+void Snake::setColour() //Sets random colour for RGB (Currently Unused)
 {
     srand(time(NULL));
     int iR=rand() % 155 + 100;
@@ -73,26 +73,27 @@ void Snake::Update()
         SegmentCollider();
 
 
-        if(clock.getElapsedTime().asMilliseconds() > 100){
-            sf::Vector2f oldpos = s_pos;
-            sf::Vector2f oldsegpos;
+        if(clock.getElapsedTime().asMilliseconds() > 100){ //Delay the Update every 100 milliseconds
+            sf::Vector2f oldpos = s_pos; //Use this variable to remember the position to move to
+            sf::Vector2f oldsegpos; //Use this variable to remember the next segment to move to
             bool movefirst = false;
-            for(sf::RectangleShape* Snake:Segments)
+            for(sf::RectangleShape* Snake:Segments) //Loop for each segment
             {
                 //oldsegpos = Snake->getPosition();
-                if(!movefirst)
+                if(!movefirst) //If the first segment hasnt moved first
                 {
                     oldsegpos = oldpos;
-                    Snake->setPosition(oldpos);
+                    Snake->setPosition(oldpos); //Move the segment to the heads old position
                     movefirst = true;
                 }
                 else
                 {
-                    sf::Vector2f tmp = Snake->getPosition();
+                    sf::Vector2f tmp = Snake->getPosition(); //for each following, set the segment pos as the one ahead of it
                     Snake->setPosition(oldsegpos);
                     oldsegpos = tmp;
                 }
-            }
+            } //Now move the snake to be ahead of the segments
+            //Move the snake in the direction set
             if (s_dir == eDir::eWest)
                 s_pos.x+=snakespeed;
             else if (s_dir == eDir::eEast)
@@ -101,7 +102,7 @@ void Snake::Update()
                 s_pos.y-=snakespeed;
             else if (s_dir == eDir::eSouth)
                 s_pos.y+=snakespeed;
-            clock.restart();
+            clock.restart(); //Reset the clock
         }
 
     s_head.setPosition(s_pos);
@@ -115,16 +116,16 @@ sf::RectangleShape* Snake::getHead()
 
 void Snake::addSegment(unsigned int amount)
 {
-    if(!amount){
+    if(!amount){ //If theres nothing in the amount to add, just stop running this function
         return;
     }
-    std::cout<<"Segments left"<<amount<<std::endl;
-    amount--;
-    addSegment(amount);
+    std::cout<<"Segments left"<<amount<<std::endl; //TEMP:: Print out the amount left to segment by
+    amount--; //reduce amount left to increase by
+    addSegment(amount); //Run this function again so it can loop and add any segments which are left
     sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
     Segment->setFillColor(sf::Color::Red);
     Segment->setPosition(sf::Vector2f(-20,-20)); //hide out of bounds until spawned onto snake
-    Segments.push_back(Segment);
+    Segments.push_back(Segment); //adds segments to the list
 }
 
 void Snake::hasDied()
@@ -132,15 +133,15 @@ void Snake::hasDied()
     isDead = true;
 }
 
-bool Snake::SegmentCollider()
+bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segments
 {
-    if(ColliderActive)
+    if(ColliderActive) //Boolean to create few moments of immunity when the snake spawns in
     {
-        for(sf::RectangleShape* Shape:Segments)
+        for(sf::RectangleShape* Shape:Segments) //Loop through the Segments List
         {
-            if(this->getHead()->getGlobalBounds().intersects(Shape->getGlobalBounds()))
+            if(this->getHead()->getGlobalBounds().intersects(Shape->getGlobalBounds())) //if the head intersects of the of segments
             {
-                this->hasDied();
+                this->hasDied(); //sets death state
                 return true;
             }
         }

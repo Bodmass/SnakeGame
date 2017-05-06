@@ -36,10 +36,7 @@ class Collectable
 /*
 NOTES::
 
--Add Texture (get it working)
--Add to the Score
--Add Fragments to Snake
--Make Position Random
+-Add Glue
 
 */
 
