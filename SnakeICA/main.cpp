@@ -24,6 +24,17 @@ int main()
     Game game;
     std::cout << "Starting" << std::endl;
     game.Run();
+
+    /* Git commands
+    git status
+    git add .
+    git commit -m "Changes"
+    git push
+    //Other git commands
+    git config --global --edit
+    git commit --ammend --reset-author
+
+    */
     // All SFML types and functions are contained in the sf namespace
 
     // Create an instance of the SFML RenderWindow type which represents the display
