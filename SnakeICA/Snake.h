@@ -19,7 +19,8 @@ class Snake
 {
     public:
         ///Init's Snake Constructor
-        Snake(std::string name);
+        Snake(std::string name, sf::Texture& dir);
+        Snake();
         virtual ~Snake();
         ///Render's Snake to the specified Render Window
         void Render (sf::RenderWindow &window);
@@ -56,7 +57,7 @@ class Snake
         ///Constructing the snake head
         sf::RectangleShape s_head;
         ///Setting movement speed (relative to snake size
-        int const snakespeed {20};
+        int snakespeed {20};
         ///Setting the clock and Collider clock (for snake spawn immunity to Segments)
         sf::Clock clock, colClock;
         ///eDir variable for direction
@@ -68,9 +69,12 @@ class Snake
         ///Snake death state
         bool isDead = false;
         ///List of Segments
+        sf::Texture m_texture;
         std::list<sf::RectangleShape*> Segments;
         ///Boolean for the Snake's Segment Immunity
         bool ColliderActive = false;
+        ///
+        bool setinittextures = true;
 
 };
 

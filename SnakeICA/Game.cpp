@@ -5,7 +5,7 @@
 #include "Snake.h"
 #include "Collectable.h"
 
-Game::Game(Snake& snake) : m_window(sf::VideoMode(800, 600), "C++ Snake ICA : s6053935"), m_snake(snake)
+Game::Game() : m_window(sf::VideoMode(800, 600), "C++ Snake ICA : s6053935")
 {
     //createUI();
     //ctor
@@ -15,6 +15,7 @@ Game::~Game()
 {
     //dtor
 }
+
 
 void Game::createUI()
 {
@@ -202,6 +203,8 @@ void Game::Run()
     Textures.back().loadFromFile("Textures/Strawberry.png"); //Textures[3]
     Textures.push_back(sf::Texture());
     Textures.back().loadFromFile("Textures/Kiwi.png"); //Textures[4]
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/PlayerSnake.png"); //Textures[5]
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Top
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom
@@ -217,6 +220,7 @@ void Game::Run()
     Collectables.push_back(Collectable("Banana", 20, 3, Textures[2]));
     Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3]));
     Collectables.push_back(Collectable("Kiwi", 80, 5, Textures[4]));
+    m_snake = Snake("Snakeman", Textures[5]);
 
 
 

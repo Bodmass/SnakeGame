@@ -20,9 +20,9 @@ int main()
     srand (time(NULL));
 
     //sf::Clock clock;
-    Snake PlayerSnake("Snakeman");
-    Game game(PlayerSnake);
 
+    Game game;
+    std::cout << "Starting" << std::endl;
     game.Run();
     // All SFML types and functions are contained in the sf namespace
 
@@ -30,7 +30,7 @@ int main()
     // and initialise its size and title text
     //sf::RenderWindow window(sf::VideoMode(800, 600), "C++ Snake ICA : s6053935");
     // We can still output to the console window
-    std::cout << "Starting" << std::endl;
+
 
     // Main loop that continues until we call Close()
 

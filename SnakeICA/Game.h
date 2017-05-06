@@ -17,7 +17,7 @@ class Game
 {
     public:
         ///Set's up the Snake Game
-        Game(Snake& snake);
+        Game();
         ///Run the game
         void Run();
         virtual ~Game();
@@ -43,7 +43,7 @@ class Game
         ///Create the window to render to
         sf::RenderWindow m_window;
         ///Create the player snake
-        Snake & m_snake;
+        Snake m_snake;
         ///Check the Collisions with the Snake and walls.
         bool CheckCollisions(Snake* snake);
         ///Timer Clock for the Main Game

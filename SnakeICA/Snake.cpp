@@ -7,17 +7,24 @@
 #include <string>
 #include <sstream>
 
-Snake::Snake(std::string name):s_name(name)
+Snake::Snake(std::string name, sf::Texture& dir):s_name(name)
 {
     std::cout<<s_name<<" constructed."<<std::endl;
     s_head.setSize(sf::Vector2f(20,20));
     s_head.setPosition(s_pos);
      s_head.setFillColor(sf::Color::Red);
+     s_head.setTexture(&dir,true);
+     m_texture = dir;
      addSegment(4); //Start the snake with a few segments
-
     //setColour();
 
     //ctor
+}
+
+
+Snake::Snake()
+{
+
 }
 
 Snake::~Snake()
@@ -52,7 +59,11 @@ void Snake::setColour() //Sets random colour for RGB (Currently Unused)
     int iG=rand() % 155 + 100;
     int iB=rand() % 155 + 100;
 
+    #ifdef OS_Windows
     s_head.setFillColor(sf::Color(iR,iG,iB,255));
+    #else
+    s_head.setFillColor(sf::Color(iR,iG,iB,255));
+    #endif
 }
 
 void Snake::setDirection(eDir dir)
@@ -65,6 +76,7 @@ void Snake::Update()
     if(colClock.getElapsedTime().asSeconds() > 3)
     {
         ColliderActive = true;
+        setinittextures = false;
     }
     //std::cout<<clock.getElapsedTime().asMilliseconds();
 //    if(isDead() == false)
@@ -123,8 +135,10 @@ void Snake::addSegment(unsigned int amount)
     amount--; //reduce amount left to increase by
     addSegment(amount); //Run this function again so it can loop and add any segments which are left
     sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
-    Segment->setFillColor(sf::Color::Red);
+    //Segment->setFillColor(sf::Color::Red);
+    Segment->setTexture(&m_texture,true);
     Segment->setPosition(sf::Vector2f(-20,-20)); //hide out of bounds until spawned onto snake
+
     Segments.push_back(Segment); //adds segments to the list
 }
 
@@ -163,6 +177,16 @@ bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segment
 void Snake::Render(sf::RenderWindow &window)
 {
     window.draw(s_head);
+
+    if(setinittextures)
+    {
+        for(sf::RectangleShape* Shape:Segments) //Loop through the Segments List
+        {
+        Shape->setTexture(&m_texture,true);
+        std::cout<<"Setting Textures"<<std::endl;
+        }
+    }
+
     for(sf::RectangleShape* Snake:Segments)
     {
         window.draw(*Snake);
