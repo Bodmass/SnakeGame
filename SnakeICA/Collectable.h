@@ -9,9 +9,11 @@ class Collectable
 {
     public:
         ///Initialiser for Collectable to take a name, amount to add to score and amount to grow.
-        Collectable(std::string name, int score, int grow, sf::Texture&dir);
+        Collectable(std::string name, int score, int grow, sf::Texture&dir, int SpawnTimer = 5);
         virtual ~Collectable();
         void Render (sf::RenderWindow &window);
+        ///Collectable Update Function
+        void Update();
         ///Return the collectable shape
         sf::RectangleShape* getCollectable();
         ///Return if the collectable has been eaten
@@ -20,6 +22,8 @@ class Collectable
         int addScore();
         ///Eats the collectable
         int Eat();
+        ///Temp
+        void CollectableInactive();
 
     private:
         std::string c_name;
@@ -29,8 +33,14 @@ class Collectable
         int scoreadd{5};
         ///Amount to segment snake by
         int growth{5};
+        ///Time it takes to spawn the Collectable
+        int c_timer{5};
+        ///Clock used for (re)spawning
+        sf::Clock clock;
         ///Boolean used for the eaten state
-        bool eaten = false;
+        bool eaten = true;
+        ///Boolean used to see if the Collectable is active
+        bool isActive = false;
 };
 
 /*

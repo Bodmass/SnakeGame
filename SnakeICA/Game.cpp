@@ -27,7 +27,7 @@ void Game::createUI()
     }
     sf::Sprite BG(BGTexture);
     sf::Font font;
-    if (!font.loadFromFile("PopulationZeroBB.otf"))
+    if (!font.loadFromFile("pxl.ttf"))
     {
 
     }
@@ -159,9 +159,11 @@ void Game::update()
     CheckCollisions(&m_snake); //Check the Collision with the Walls & Collectables
     for(int i = 0; i<Collectables.size(); i++) //Checks through all the current Collectables in the vector and checks if they've eaten, if they have been, remove it from the vector list.
     {
+        Collectables[i].Update();
         if(Collectables[i].isEaten())
         {
-            Collectables.erase(Collectables.begin() + i);
+            //Collectables.erase(Collectables.begin() + i);
+            Collectables[i].CollectableInactive();
 
         }
     }
@@ -215,11 +217,11 @@ void Game::Run()
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(20,600))); //Right
     Walls.back().setPosition(sf::Vector2f(780,0));
-    Collectables.push_back(Collectable("Apple", 5, 1, Textures[0])); //Pushes back the collectable with the Collectable Name, Score to Add, Segment Amount and the Texture to load.
-    Collectables.push_back(Collectable("Pear", 10, 2, Textures[1]));
-    Collectables.push_back(Collectable("Banana", 20, 3, Textures[2]));
-    Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3]));
-    Collectables.push_back(Collectable("Kiwi", 80, 5, Textures[4]));
+    Collectables.push_back(Collectable("Apple", 5, 1, Textures[0], 5)); //Pushes back the collectable with the Collectable Name, Score to Add, Segment Amount and the Texture to load.
+    Collectables.push_back(Collectable("Pear", 10, 2, Textures[1], 10));
+    Collectables.push_back(Collectable("Banana", 20, 3, Textures[2], 15));
+    Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3], 20));
+    Collectables.push_back(Collectable("Kiwi", 80, 5, Textures[4], 25));
     m_snake = Snake("Snakeman", Textures[5]);
 
 
