@@ -47,6 +47,11 @@ void Game::createUI()
     PlayerScore.setColor(sf::Color::White);
     PlayerScore.setPosition(115, 490);
 
+    sf::Text PlayerGlueText(m_snake.getGlue(), font, 35);
+    PlayerGlueText.setColor(sf::Color::White);
+    PlayerGlueText.setPosition(115, 535);
+
+
     //AI Score
     sf::Text AISText("AI Score", font, 35);
     AISText.setColor(sf::Color::White);
@@ -65,11 +70,11 @@ void Game::createUI()
     TimerText.setColor(sf::Color::White);
     TimerText.setPosition(390, 525);
 
-    updateUI(BGTexture, BG, TimerText, TimerTitle, AISText, PlayerScore, PlayerSText, GlueText);
+    updateUI(BGTexture, BG, TimerText, TimerTitle, AISText, PlayerScore, PlayerSText, GlueText, PlayerGlueText);
 
 }
 
-void Game::updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText)
+void Game::updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText)
 {
 
     //Makes the Main Clock of the game count down
@@ -86,6 +91,7 @@ void Game::updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf
     m_window.draw(AISText);
     m_window.draw(PlayerSText);
     m_window.draw(PlayerScore);
+    m_window.draw(PlayerGlueText);
     m_window.draw(TimerTitle);
     m_window.draw(TimerText);
 }
@@ -186,6 +192,7 @@ bool Game::CheckCollisions(Snake* snake)
         {
             snake->addScore(Shape.addScore());
             snake->addSegment(Shape.Eat());
+            snake->eatGlue(Shape.addGlue());
             return true;
         }
     }
@@ -206,7 +213,9 @@ void Game::Run()
     Textures.push_back(sf::Texture());
     Textures.back().loadFromFile("Textures/Kiwi.png"); //Textures[4]
     Textures.push_back(sf::Texture());
-    Textures.back().loadFromFile("Textures/PlayerSnake.png"); //Textures[5]
+    Textures.back().loadFromFile("Textures/Glue.png"); //Textures[5]
+    Textures.push_back(sf::Texture());
+    Textures.back().loadFromFile("Textures/PlayerSnake.png"); //Textures[6]
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Top
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom
@@ -222,7 +231,8 @@ void Game::Run()
     Collectables.push_back(Collectable("Banana", 20, 3, Textures[2], 15));
     Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3], 20));
     Collectables.push_back(Collectable("Kiwi", 80, 5, Textures[4], 25));
-    m_snake = Snake("Snakeman", Textures[5]);
+    Collectables.push_back(Glue::Collectable("Glue", 10, 0, Textures[5], 2));
+    m_snake = Snake("Snakeman", Textures[6]);
 
 
 

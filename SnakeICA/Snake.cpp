@@ -52,6 +52,15 @@ std::string Snake::getScore() //Returns the Score into a string
     return showscore.str();
 }
 
+std::string Snake::getGlue() //Returns the Score into a string
+{
+    std::ostringstream showglue;
+    long num = s_glue;
+    showglue << num;
+
+    return showglue.str();
+}
+
 void Snake::setColour() //Sets random colour for RGB (Currently Unused)
 {
     srand(time(NULL));
@@ -142,6 +151,11 @@ void Snake::addSegment(unsigned int amount)
     Segments.push_back(Segment); //adds segments to the list
 }
 
+int Snake::eatGlue(int amount)
+{
+    s_glue+=amount;
+}
+
 void Snake::hasDied()
 {
     isDead = true;
@@ -183,7 +197,7 @@ void Snake::Render(sf::RenderWindow &window)
         for(sf::RectangleShape* Shape:Segments) //Loop through the Segments List
         {
         Shape->setTexture(&m_texture,true);
-        std::cout<<"Setting Textures"<<std::endl;
+        //std::cout<<"Setting Textures"<<std::endl;
         }
     }
 

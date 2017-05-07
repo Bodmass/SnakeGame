@@ -46,6 +46,12 @@ class Snake
         bool SegmentCollider();
         ///Return the score of the snake
         std::string getScore();
+        ///Return the glue amount eaten by the snake
+        std::string getGlue();
+        ///Eat Glue
+        int eatGlue(int amount);
+        ///Use Glue
+        void Temp();
 
 
     protected:

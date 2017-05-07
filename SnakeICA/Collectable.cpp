@@ -76,6 +76,11 @@ int Collectable::Eat() //Eats the fruit and grow the amount specified, if its al
 
 }
 
+int Collectable::addGlue()
+{
+    return glueamount;
+}
+
 void Collectable::Render(sf::RenderWindow &window)
 {
     if(isActive)

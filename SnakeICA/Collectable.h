@@ -24,6 +24,8 @@ class Collectable
         int Eat();
         ///Temp
         void CollectableInactive();
+        ///Add Glue
+        int addGlue();
 
     private:
         std::string c_name;
@@ -41,8 +43,25 @@ class Collectable
         bool eaten = true;
         ///Boolean used to see if the Collectable is active
         bool isActive = false;
+    protected:
+        int glueamount{0};
+
+
+
 };
 
+
+class Glue : public Collectable //Inherit from the Collectable (Having issues)
+{
+    public:
+        Glue(std::string name, int score, int grow, sf::Texture&dir, int SpawnTimer = 5);
+        //virtual ~Collectable();
+        //Glue();
+
+    protected:
+        int glueamount{25};
+
+};
 /*
 NOTES::
 

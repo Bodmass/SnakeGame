@@ -39,7 +39,7 @@ class Game
         ///Create the game's UI (Score, Timer, Glue)
         void createUI();
         ///Update the game's UI
-        void updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText);
+        void updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText);
         ///Create the window to render to
         sf::RenderWindow m_window;
         ///Create the player snake
