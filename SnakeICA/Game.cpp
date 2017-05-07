@@ -212,7 +212,10 @@ bool Game::CheckCollisions(Snake* snake)
             snake->addScore(Shape->addScore());
             snake->addSegment(Shape->Eat());
             //snake->eatGlue(Shape.addGlue());
-            if(dynamic_cast<Glue*>(Shape)) {snake->eatGlue(dynamic_cast<Glue*>(Shape)->addGlue());}
+            if(dynamic_cast<Glue*>(Shape))
+            {
+                snake->eatGlue(dynamic_cast<Glue*>(Shape)->addGlue());
+            }
             return true;
         }
     }
@@ -252,7 +255,7 @@ void Game::Run()
     Collectables.push_back(new Collectable("Strawberry", 40, 4, Textures[3], 20));
     Collectables.push_back(new Collectable("Kiwi", 80, 5, Textures[4], 25));
     Collectables.push_back(new Glue("Glue", 0, 0, Textures[5], 2));
-    m_snake = Snake("Snakeman", Textures[6]);
+    m_snake = Snake("Snakeman", Textures[6], sf::Vector2f(200,200));
 
 
 

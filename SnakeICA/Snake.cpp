@@ -7,7 +7,7 @@
 #include <string>
 #include <sstream>
 
-Snake::Snake(std::string name, sf::Texture& dir):s_name(name)
+Snake::Snake(std::string name, sf::Texture& dir, sf::Vector2f spawnPos):s_name(name), s_pos(spawnPos)
 {
     std::cout<<s_name<<" constructed."<<std::endl;
     s_head.setSize(sf::Vector2f(20,20));
@@ -55,9 +55,14 @@ std::string Snake::getScore() //Returns the Score into a string
 std::string Snake::getGlue() //Returns the Score into a string
 {
     std::ostringstream showglue;
-    long num = s_glue;
-    showglue << num;
-
+    if(s_glue != 100)
+    {
+        long num = s_glue;
+        showglue << num;
+        showglue << "%";
+    }
+    else
+        showglue << "READY";
     return showglue.str();
 }
 
@@ -140,51 +145,64 @@ sf::RectangleShape* Snake::getHead()
 
 void Snake::addSegment(unsigned int amount)
 {
-    if(!amount)  //If theres nothing in the amount to add, just stop running this function
+    if(!isDead)
     {
-        return;
-    }
-    std::cout<<"Segments left"<<amount<<std::endl; //TEMP:: Print out the amount left to segment by
-    amount--; //reduce amount left to increase by
-    addSegment(amount); //Run this function again so it can loop and add any segments which are left
-    sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
-    //Segment->setFillColor(sf::Color::Red);
-    Segment->setTexture(&m_texture,true);
-    Segment->setPosition(sf::Vector2f(-20,-20)); //hide out of bounds until spawned onto snake
+        if(!amount)  //If theres nothing in the amount to add, just stop running this function
+        {
+            return;
+        }
+        std::cout<<"Segments left"<<amount<<std::endl; //TEMP:: Print out the amount left to segment by
+        amount--; //reduce amount left to increase by
+        addSegment(amount); //Run this function again so it can loop and add any segments which are left
+        sf::RectangleShape* Segment = new sf::RectangleShape(sf::Vector2f(20,20));
+        //Segment->setFillColor(sf::Color::Red);
+        Segment->setTexture(&m_texture,true);
+        Segment->setPosition(sf::Vector2f(-20,-20)); //hide out of bounds until spawned onto snake
 
-    Segments.push_back(Segment); //adds segments to the list
+        Segments.push_back(Segment); //adds segments to the list
+    }
 }
 
 int Snake::eatGlue(int amount)
 {
-    if(s_glue<= 100)
+    if(!isDead)
     {
-        s_glue+=amount;
-    }
-    if(s_glue>100)
-    {
-        s_glue=100;
+
+        if(g2Clock.getElapsedTime().asMilliseconds() > 50)  //Delay the amount you can eat to only once every 50 milliseconds
+        {
+            if(s_glue<= 100)
+                s_glue+=amount;
+            if(s_glue>100)
+                s_glue=100;
+            g2Clock.restart();
+        }
     }
     return 0;
 }
 
 void Snake::useGlue()
 {
-    if(s_glue<100)
+    if(!isDead)
     {
-        return;
-    }
-    if(s_glue>=100)
-    {
-        s_glue = 0;
-        gClock.restart();
+        if(s_glue<100)
+        {
+            return;
+        }
+        if(s_glue>=100)
+        {
+            s_glue = 0;
+            gClock.restart();
+        }
     }
 }
 
 void Snake::hasDied()
 {
-    isDead = true;
-    std::cout<<s_name<<" has died!"<<std::endl;
+    if(!isDead)
+    {
+        isDead = true;
+        std::cout<<s_name<<" has died!"<<std::endl;
+    }
 }
 
 bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segments

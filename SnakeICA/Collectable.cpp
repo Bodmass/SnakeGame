@@ -11,7 +11,7 @@ Collectable::Collectable(std::string name, int score, int grow, sf::Texture&dir,
     c_pos.y = -20;
     c_obj.setPosition(c_pos);
     //if (!CTexture.loadFromFile("Textures/Arena.png"))
-        //std::cout<<"Loading Apple Texture Failed"<<std::endl;
+    //std::cout<<"Loading Apple Texture Failed"<<std::endl;
     //return EXIT_FAILURE;
     //CTexture.loadFromFile(dir);
     c_obj.setTexture(&dir,true);
@@ -83,7 +83,7 @@ sf::RectangleShape* Collectable::getCollectable() //Return the Collectable Shape
 
 int Collectable::addScore() //Return the amount to add
 {
-   return scoreadd;
+    return scoreadd;
 }
 
 bool Collectable::isEaten() //Check if the collectable has been eaten
@@ -119,7 +119,7 @@ void Collectable::Render(sf::RenderWindow &window)
 {
     if(isActive)
     {
-    window.draw(c_obj);
+        window.draw(c_obj);
     }
     //    c_obj.setTexture(&CTexture,true);
     //setColour();
