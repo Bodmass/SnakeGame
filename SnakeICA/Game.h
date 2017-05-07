@@ -40,17 +40,21 @@ private:
     ///Create the game's UI (Score, Timer, Glue)
     void createUI();
     ///Update the game's UI
-    void updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text AISText, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText);
+    void updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText);
     ///Create the window to render to
     sf::RenderWindow m_window;
     ///Create the player snake
-    Snake m_snake;
+    //Snake m_snake, m_snake2;
     ///Check the Collisions with the Snake and walls.
     bool CheckCollisions(Snake* snake);
     ///Timer Clock for the Main Game
     sf::Clock MainClock;
+    ///
+    int HoldClock = 0;
     ///Textures Vector for the Collectable
     std::vector<sf::Texture> Textures;
+    ///Snake Vector
+    std::vector<Snake> m_Snakes;
 
 };
 

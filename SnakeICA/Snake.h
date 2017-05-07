@@ -40,6 +40,8 @@ public:
     int addScore(int amount);
     ///Sets the death state of the snake
     void hasDied();
+    ///Checks the death state
+    bool checkDeath();
     ///Adds a segment to the snake
     void addSegment(unsigned int amount);
     ///Checks the collision with any of the Snake's Segments
@@ -52,6 +54,8 @@ public:
     int eatGlue(int amount);
     ///Use the glue and reset the glue clock
     void useGlue();
+    ///
+    std::list<sf::RectangleShape*> getSegements();
 
 
 protected:

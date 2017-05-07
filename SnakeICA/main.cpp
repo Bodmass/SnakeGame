@@ -68,7 +68,7 @@ int main()
             window.clear();
             window.draw(BG);
             window.draw(GlueText);
-            window.draw(AISText);
+            window.draw(PlayerS2Text);
             window.draw(PlayerSText);
             window.draw(PlayerScore);
             window.draw(TimerTitle);

@@ -205,6 +205,13 @@ void Snake::hasDied()
     }
 }
 
+std::list<sf::RectangleShape*> Snake::getSegements()
+{
+    return Segments;
+}
+
+bool Snake::checkDeath() {return isDead;}
+
 bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segments
 {
     if(ColliderActive) //Boolean to create few moments of immunity when the snake spawns in
