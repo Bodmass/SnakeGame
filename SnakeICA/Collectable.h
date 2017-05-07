@@ -21,16 +21,21 @@ class Collectable
         ///Returns the amount to add to the score
         int addScore();
         ///Eats the collectable
-        int Eat();
+        virtual int Eat();
         ///Temp
         void CollectableInactive();
-        ///Add Glue
-        int addGlue();
+        ///
+        sf::Vector2f RandPos();
+        ///
+        void CollectableMove(sf::Vector2f);
+        ///
+        bool CheckActive();
 
+    protected:
+        sf::RectangleShape c_obj;
     private:
         std::string c_name;
         sf::Vector2f c_pos{100,100};
-        sf::RectangleShape c_obj;
         ///Amount to increase score
         int scoreadd{5};
         ///Amount to segment snake by
@@ -43,8 +48,6 @@ class Collectable
         bool eaten = true;
         ///Boolean used to see if the Collectable is active
         bool isActive = false;
-    protected:
-        int glueamount{0};
 
 
 
@@ -55,11 +58,14 @@ class Glue : public Collectable //Inherit from the Collectable (Having issues)
 {
     public:
         Glue(std::string name, int score, int grow, sf::Texture&dir, int SpawnTimer = 5);
-        //virtual ~Collectable();
+        ~Glue();
         //Glue();
+        int Eat();
+        ///Add Glue
+        int addGlue();
 
-    protected:
-        int glueamount{25};
+    private:
+        int glueamount{2};
 
 };
 /*

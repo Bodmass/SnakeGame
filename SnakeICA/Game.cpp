@@ -127,6 +127,9 @@ void Game::processEvents()
                 //std::cout << "Direction set to Down" << std::endl;
                 m_snake.setDirection(eDir::eSouth); //= eDir::eSouth;
                 break;
+            case sf::Keyboard::Space:
+                m_snake.useGlue();
+                break;
             default:
                 break;
             }
@@ -148,9 +151,9 @@ void Game::render()
         m_window.draw(Shape);
 
     }
-    for(Collectable& Shape:Collectables) //Loop through all the Collectables and draws them
+    for(Collectable* Shape:Collectables) //Loop through all the Collectables and draws them
     {
-        m_window.draw(*Shape.getCollectable());
+        m_window.draw(*Shape->getCollectable());
 
     }
     m_snake.Render(m_window);
@@ -165,12 +168,28 @@ void Game::update()
     CheckCollisions(&m_snake); //Check the Collision with the Walls & Collectables
     for(int i = 0; i<Collectables.size(); i++) //Checks through all the current Collectables in the vector and checks if they've eaten, if they have been, remove it from the vector list.
     {
-        Collectables[i].Update();
-        if(Collectables[i].isEaten())
+        Collectables[i]->Update();
+        if(Collectables[i]->isEaten())
         {
             //Collectables.erase(Collectables.begin() + i);
-            Collectables[i].CollectableInactive();
+            Collectables[i]->CollectableInactive();
 
+        }
+    }
+
+    for(Collectable* Shape:Collectables)
+    {
+        for(Collectable* Shape2:Collectables)
+        {
+            if(Shape==Shape2)
+                break;
+            if(Shape->getCollectable()->getGlobalBounds().intersects(Shape2->getCollectable()->getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the collectables, eat it and add the score.
+            {
+                if(Shape->CheckActive())
+                {
+                    Shape->CollectableMove(Shape->RandPos());
+                }
+            }
         }
     }
 
@@ -186,13 +205,14 @@ bool Game::CheckCollisions(Snake* snake)
             return true;
         }
     }
-    for(Collectable& Shape:Collectables)
+    for(Collectable* Shape:Collectables)
     {
-        if(snake->getHead()->getGlobalBounds().intersects(Shape.getCollectable()->getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the collectables, eat it and add the score.
+        if(snake->getHead()->getGlobalBounds().intersects(Shape->getCollectable()->getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the collectables, eat it and add the score.
         {
-            snake->addScore(Shape.addScore());
-            snake->addSegment(Shape.Eat());
-            snake->eatGlue(Shape.addGlue());
+            snake->addScore(Shape->addScore());
+            snake->addSegment(Shape->Eat());
+            //snake->eatGlue(Shape.addGlue());
+            if(dynamic_cast<Glue*>(Shape)) {snake->eatGlue(dynamic_cast<Glue*>(Shape)->addGlue());}
             return true;
         }
     }
@@ -226,12 +246,12 @@ void Game::Run()
     Walls.back().setPosition(sf::Vector2f(0,0));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(20,600))); //Right
     Walls.back().setPosition(sf::Vector2f(780,0));
-    Collectables.push_back(Collectable("Apple", 5, 1, Textures[0], 5)); //Pushes back the collectable with the Collectable Name, Score to Add, Segment Amount and the Texture to load.
-    Collectables.push_back(Collectable("Pear", 10, 2, Textures[1], 10));
-    Collectables.push_back(Collectable("Banana", 20, 3, Textures[2], 15));
-    Collectables.push_back(Collectable("Strawberry", 40, 4, Textures[3], 20));
-    Collectables.push_back(Collectable("Kiwi", 80, 5, Textures[4], 25));
-    Collectables.push_back(Glue::Collectable("Glue", 10, 0, Textures[5], 2));
+    Collectables.push_back(new Collectable("Apple", 5, 1, Textures[0], 5)); //Pushes back the collectable with the Collectable Name, Score to Add, Segment Amount and the Texture to load.
+    Collectables.push_back(new Collectable("Pear", 10, 2, Textures[1], 10));
+    Collectables.push_back(new Collectable("Banana", 20, 3, Textures[2], 15));
+    Collectables.push_back(new Collectable("Strawberry", 40, 4, Textures[3], 20));
+    Collectables.push_back(new Collectable("Kiwi", 80, 5, Textures[4], 25));
+    Collectables.push_back(new Glue("Glue", 0, 0, Textures[5], 2));
     m_snake = Snake("Snakeman", Textures[6]);
 
 

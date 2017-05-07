@@ -12,10 +12,10 @@ Snake::Snake(std::string name, sf::Texture& dir):s_name(name)
     std::cout<<s_name<<" constructed."<<std::endl;
     s_head.setSize(sf::Vector2f(20,20));
     s_head.setPosition(s_pos);
-     //s_head.setFillColor(sf::Color::Red);
-     s_head.setTexture(&dir,true);
-     m_texture = dir;
-     addSegment(4); //Start the snake with a few segments
+    //s_head.setFillColor(sf::Color::Red);
+    s_head.setTexture(&dir,true);
+    m_texture = dir;
+    addSegment(4); //Start the snake with a few segments
     //setColour();
 
     //ctor
@@ -68,11 +68,11 @@ void Snake::setColour() //Sets random colour for RGB (Currently Unused)
     int iG=rand() % 155 + 100;
     int iB=rand() % 155 + 100;
 
-    #ifdef OS_Windows // This is a test
+#ifdef OS_Windows // This is a test
     s_head.setFillColor(sf::Color(iR,iG,iB,255));
-    #else
+#else
     s_head.setFillColor(sf::Color(iR,iG,iB,255));
-    #endif
+#endif
 }
 
 void Snake::setDirection(eDir dir)
@@ -93,40 +93,43 @@ void Snake::Update()
     {
         SegmentCollider();
 
-
-        if(clock.getElapsedTime().asMilliseconds() > 100){ //Delay the Update every 100 milliseconds
-            sf::Vector2f oldpos = s_pos; //Use this variable to remember the position to move to
-            sf::Vector2f oldsegpos; //Use this variable to remember the next segment to move to
-            bool movefirst = false;
-            for(sf::RectangleShape* Snake:Segments) //Loop for each segment
+        if(gClock.getElapsedTime().asSeconds() > 1)
+        {
+            if(clock.getElapsedTime().asMilliseconds() > 100)  //Delay the Update every 100 milliseconds
             {
-                //oldsegpos = Snake->getPosition();
-                if(!movefirst) //If the first segment hasnt moved first
+                sf::Vector2f oldpos = s_pos; //Use this variable to remember the position to move to
+                sf::Vector2f oldsegpos; //Use this variable to remember the next segment to move to
+                bool movefirst = false;
+                for(sf::RectangleShape* Snake:Segments) //Loop for each segment
                 {
-                    oldsegpos = oldpos;
-                    Snake->setPosition(oldpos); //Move the segment to the heads old position
-                    movefirst = true;
-                }
-                else
-                {
-                    sf::Vector2f tmp = Snake->getPosition(); //for each following, set the segment pos as the one ahead of it
-                    Snake->setPosition(oldsegpos);
-                    oldsegpos = tmp;
-                }
-            } //Now move the snake to be ahead of the segments
-            //Move the snake in the direction set
-            if (s_dir == eDir::eWest)
-                s_pos.x+=snakespeed;
-            else if (s_dir == eDir::eEast)
-                s_pos.x-=snakespeed;
-            else if (s_dir == eDir::eNorth)
-                s_pos.y-=snakespeed;
-            else if (s_dir == eDir::eSouth)
-                s_pos.y+=snakespeed;
-            clock.restart(); //Reset the clock
+                    //oldsegpos = Snake->getPosition();
+                    if(!movefirst) //If the first segment hasnt moved first
+                    {
+                        oldsegpos = oldpos;
+                        Snake->setPosition(oldpos); //Move the segment to the heads old position
+                        movefirst = true;
+                    }
+                    else
+                    {
+                        sf::Vector2f tmp = Snake->getPosition(); //for each following, set the segment pos as the one ahead of it
+                        Snake->setPosition(oldsegpos);
+                        oldsegpos = tmp;
+                    }
+                } //Now move the snake to be ahead of the segments
+                //Move the snake in the direction set
+                if (s_dir == eDir::eWest)
+                    s_pos.x+=snakespeed;
+                else if (s_dir == eDir::eEast)
+                    s_pos.x-=snakespeed;
+                else if (s_dir == eDir::eNorth)
+                    s_pos.y-=snakespeed;
+                else if (s_dir == eDir::eSouth)
+                    s_pos.y+=snakespeed;
+                clock.restart(); //Reset the clock
+            }
         }
 
-    s_head.setPosition(s_pos);
+        s_head.setPosition(s_pos);
     }
 }
 
@@ -137,7 +140,8 @@ sf::RectangleShape* Snake::getHead()
 
 void Snake::addSegment(unsigned int amount)
 {
-    if(!amount){ //If theres nothing in the amount to add, just stop running this function
+    if(!amount)  //If theres nothing in the amount to add, just stop running this function
+    {
         return;
     }
     std::cout<<"Segments left"<<amount<<std::endl; //TEMP:: Print out the amount left to segment by
@@ -153,12 +157,34 @@ void Snake::addSegment(unsigned int amount)
 
 int Snake::eatGlue(int amount)
 {
-    s_glue+=amount;
+    if(s_glue<= 100)
+    {
+        s_glue+=amount;
+    }
+    if(s_glue>100)
+    {
+        s_glue=100;
+    }
+    return 0;
+}
+
+void Snake::useGlue()
+{
+    if(s_glue<100)
+    {
+        return;
+    }
+    if(s_glue>=100)
+    {
+        s_glue = 0;
+        gClock.restart();
+    }
 }
 
 void Snake::hasDied()
 {
     isDead = true;
+    std::cout<<s_name<<" has died!"<<std::endl;
 }
 
 bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segments
@@ -196,8 +222,8 @@ void Snake::Render(sf::RenderWindow &window)
     {
         for(sf::RectangleShape* Shape:Segments) //Loop through the Segments List
         {
-        Shape->setTexture(&m_texture,true);
-        //std::cout<<"Setting Textures"<<std::endl;
+            Shape->setTexture(&m_texture,true);
+            //std::cout<<"Setting Textures"<<std::endl;
         }
     }
 

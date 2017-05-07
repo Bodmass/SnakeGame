@@ -18,6 +18,17 @@ Collectable::Collectable(std::string name, int score, int grow, sf::Texture&dir,
     //ctor
 }
 
+Glue::Glue(std::string name, int score, int grow, sf::Texture&dir, int SpawnTimer):Collectable(name, score, grow, dir, SpawnTimer)
+{
+    c_obj.setSize(sf::Vector2f(40,40));
+}
+
+Glue::~Glue()
+{
+    //dtor
+}
+
+
 Collectable::~Collectable()
 {
     //dtor
@@ -30,22 +41,40 @@ void Collectable::CollectableInactive()
     c_obj.setPosition(c_pos);
 }
 
+sf::Vector2f Collectable::RandPos()
+{
+    float rx = (rand() %(680/20)) * 20 + 40;
+    float ry = (rand() %(300/20)) * 20 + 40;
+    sf::Vector2f newpos{rx,ry};
+    return newpos;
+}
+
+bool Collectable::CheckActive()
+{
+    if(isActive)
+        return true;
+    return false;
+}
+
+void Collectable::CollectableMove(sf::Vector2f(position))
+{
+
+}
+
 void Collectable::Update()
 {
     if(!isActive)
     {
         if(clock.getElapsedTime().asSeconds() > c_timer)
         {
-            float rx = (rand() %(680/20)) * 20 + 40;
-            float ry = (rand() %(300/20)) * 20 + 40;
-            c_pos.x = rx;
-            c_pos.y = ry;
-            c_obj.setPosition(c_pos);
+            c_obj.setPosition(RandPos());
             isActive= true;
             eaten = false;
         }
     }
 }
+
+
 
 sf::RectangleShape* Collectable::getCollectable() //Return the Collectable Shape
 {
@@ -76,7 +105,12 @@ int Collectable::Eat() //Eats the fruit and grow the amount specified, if its al
 
 }
 
-int Collectable::addGlue()
+int Glue::Eat() //Eats the fruit and grow the amount specified, if its already been eaten, don't grow from it.
+{
+    return 0;
+}
+
+int Glue::addGlue()
 {
     return glueamount;
 }

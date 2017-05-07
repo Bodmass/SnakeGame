@@ -51,7 +51,7 @@ class Snake
         ///Eat Glue
         int eatGlue(int amount);
         ///Use Glue
-        void Temp();
+        void useGlue();
 
 
     protected:
@@ -65,7 +65,7 @@ class Snake
         ///Setting movement speed (relative to snake size
         int snakespeed {20};
         ///Setting the clock and Collider clock (for snake spawn immunity to Segments)
-        sf::Clock clock, colClock;
+        sf::Clock clock, colClock, gClock;
         ///eDir variable for direction
         eDir s_dir = eDir::eNorth;
         ///Snakes Score

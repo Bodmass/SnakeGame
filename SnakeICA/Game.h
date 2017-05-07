@@ -30,7 +30,7 @@ class Game
         ///Vector used for walls
         std::vector<sf::RectangleShape> Walls;
         ///Vector used for collectables
-        std::vector<Collectable> Collectables;
+        std::vector<Collectable*> Collectables;
         void processEvents();
         ///Update the game every frame
         void update();
