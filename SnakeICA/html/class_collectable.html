@@ -61,6 +61,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_collectable-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Collectable Class Reference</div>  </div>
@@ -68,16 +69,28 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="_collectable_8h_source.html">Collectable.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Collectable:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_collectable.png" usemap="#Collectable_map" alt=""/>
+  <map id="Collectable_map" name="Collectable_map">
+<area href="class_glue.html" alt="Glue" shape="rect" coords="0,56,75,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af86ad1035ad7973460582d7c300eb585"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#af86ad1035ad7973460582d7c300eb585">Collectable</a> (std::string name, int score, int grow, sf::Texture &amp;dir)</td></tr>
-<tr class="memdesc:af86ad1035ad7973460582d7c300eb585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialiser for <a class="el" href="class_collectable.html">Collectable</a> to take a name, amount to add to score and amount to grow.  <a href="#af86ad1035ad7973460582d7c300eb585">More...</a><br /></td></tr>
-<tr class="separator:af86ad1035ad7973460582d7c300eb585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c99a79a69cfe4c7434b63f186997d2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a4c99a79a69cfe4c7434b63f186997d2e">Collectable</a> (std::string name, int score, int grow, sf::Texture &amp;dir, int SpawnTimer=5)</td></tr>
+<tr class="memdesc:a4c99a79a69cfe4c7434b63f186997d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialiser for <a class="el" href="class_collectable.html">Collectable</a> to take a name, amount to add to score and amount to grow.  <a href="#a4c99a79a69cfe4c7434b63f186997d2e">More...</a><br /></td></tr>
+<tr class="separator:a4c99a79a69cfe4c7434b63f186997d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a420214e6656c670e88885b6f9716547b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a420214e6656c670e88885b6f9716547b">~Collectable</a> ()</td></tr>
 <tr class="separator:a420214e6656c670e88885b6f9716547b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac425bb27c527e22cbd7f7c241b8fafdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#ac425bb27c527e22cbd7f7c241b8fafdd">Render</a> (sf::RenderWindow &amp;window)</td></tr>
 <tr class="separator:ac425bb27c527e22cbd7f7c241b8fafdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e6fb05cab75d7172ce975bc983435c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a5e6fb05cab75d7172ce975bc983435c5">Update</a> ()</td></tr>
+<tr class="memdesc:a5e6fb05cab75d7172ce975bc983435c5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_collectable.html">Collectable</a> Update Function.  <a href="#a5e6fb05cab75d7172ce975bc983435c5">More...</a><br /></td></tr>
+<tr class="separator:a5e6fb05cab75d7172ce975bc983435c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5ea04b6de1dce93e3f1250c8089be6a"><td class="memItemLeft" align="right" valign="top">sf::RectangleShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#af5ea04b6de1dce93e3f1250c8089be6a">getCollectable</a> ()</td></tr>
 <tr class="memdesc:af5ea04b6de1dce93e3f1250c8089be6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the collectable shape.  <a href="#af5ea04b6de1dce93e3f1250c8089be6a">More...</a><br /></td></tr>
 <tr class="separator:af5ea04b6de1dce93e3f1250c8089be6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -87,13 +100,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a99a793fb589be015f4fe88396c5164"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a1a99a793fb589be015f4fe88396c5164">addScore</a> ()</td></tr>
 <tr class="memdesc:a1a99a793fb589be015f4fe88396c5164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the amount to add to the score.  <a href="#a1a99a793fb589be015f4fe88396c5164">More...</a><br /></td></tr>
 <tr class="separator:a1a99a793fb589be015f4fe88396c5164"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa57f6c9fd95323d020c57a884e9c743"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#aaa57f6c9fd95323d020c57a884e9c743">Eat</a> ()</td></tr>
-<tr class="memdesc:aaa57f6c9fd95323d020c57a884e9c743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eats the collectable.  <a href="#aaa57f6c9fd95323d020c57a884e9c743">More...</a><br /></td></tr>
+<tr class="memitem:aaa57f6c9fd95323d020c57a884e9c743"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#aaa57f6c9fd95323d020c57a884e9c743">Eat</a> ()</td></tr>
+<tr class="memdesc:aaa57f6c9fd95323d020c57a884e9c743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eats the collectable (virtual so the glue can be affected differently)  <a href="#aaa57f6c9fd95323d020c57a884e9c743">More...</a><br /></td></tr>
 <tr class="separator:aaa57f6c9fd95323d020c57a884e9c743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac11aca27e893002d4daccb51eeb4c2f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#ac11aca27e893002d4daccb51eeb4c2f2">CollectableInactive</a> ()</td></tr>
+<tr class="memdesc:ac11aca27e893002d4daccb51eeb4c2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to hide collectable off screen until its ready.  <a href="#ac11aca27e893002d4daccb51eeb4c2f2">More...</a><br /></td></tr>
+<tr class="separator:ac11aca27e893002d4daccb51eeb4c2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0ebd307d19949bd1a0201b04ff4957"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a0d0ebd307d19949bd1a0201b04ff4957">RandPos</a> ()</td></tr>
+<tr class="memdesc:a0d0ebd307d19949bd1a0201b04ff4957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomize a position of the collectable to respawn it.  <a href="#a0d0ebd307d19949bd1a0201b04ff4957">More...</a><br /></td></tr>
+<tr class="separator:a0d0ebd307d19949bd1a0201b04ff4957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfde89de09ea5d28223c4845617277a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#abfde89de09ea5d28223c4845617277a0">CollectableMove</a> (sf::Vector2f)</td></tr>
+<tr class="memdesc:abfde89de09ea5d28223c4845617277a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the <a class="el" href="class_collectable.html">Collectable</a> to a Specified Position (used for respawning)  <a href="#abfde89de09ea5d28223c4845617277a0">More...</a><br /></td></tr>
+<tr class="separator:abfde89de09ea5d28223c4845617277a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a237a476b777a3a7069a1e0761c43b516"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#a237a476b777a3a7069a1e0761c43b516">CheckActive</a> ()</td></tr>
+<tr class="memdesc:a237a476b777a3a7069a1e0761c43b516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the <a class="el" href="class_collectable.html">Collectable</a> is active in the scene.  <a href="#a237a476b777a3a7069a1e0761c43b516">More...</a><br /></td></tr>
+<tr class="separator:a237a476b777a3a7069a1e0761c43b516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:af7a66926f841fa9d655b4460684f9ed5"><td class="memItemLeft" align="right" valign="top">sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collectable.html#af7a66926f841fa9d655b4460684f9ed5">c_obj</a></td></tr>
+<tr class="separator:af7a66926f841fa9d655b4460684f9ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af86ad1035ad7973460582d7c300eb585"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af86ad1035ad7973460582d7c300eb585">&#9670;&nbsp;</a></span>Collectable()</h2>
+<a id="a4c99a79a69cfe4c7434b63f186997d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c99a79a69cfe4c7434b63f186997d2e">&#9670;&nbsp;</a></span>Collectable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -120,7 +150,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">sf::Texture &amp;&#160;</td>
-          <td class="paramname"><em>dir</em>&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>SpawnTimer</em> = <code>5</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -179,11 +215,72 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a237a476b777a3a7069a1e0761c43b516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a237a476b777a3a7069a1e0761c43b516">&#9670;&nbsp;</a></span>CheckActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Collectable::CheckActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the <a class="el" href="class_collectable.html">Collectable</a> is active in the scene. </p>
+
+</div>
+</div>
+<a id="ac11aca27e893002d4daccb51eeb4c2f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac11aca27e893002d4daccb51eeb4c2f2">&#9670;&nbsp;</a></span>CollectableInactive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Collectable::CollectableInactive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to hide collectable off screen until its ready. </p>
+
+</div>
+</div>
+<a id="abfde89de09ea5d28223c4845617277a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfde89de09ea5d28223c4845617277a0">&#9670;&nbsp;</a></span>CollectableMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Collectable::CollectableMove </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the <a class="el" href="class_collectable.html">Collectable</a> to a Specified Position (used for respawning) </p>
+
+</div>
+</div>
 <a id="aaa57f6c9fd95323d020c57a884e9c743"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa57f6c9fd95323d020c57a884e9c743">&#9670;&nbsp;</a></span>Eat()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int Collectable::Eat </td>
@@ -192,9 +289,16 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Eats the collectable. </p>
+<p>Eats the collectable (virtual so the glue can be affected differently) </p>
+
+<p>Reimplemented in <a class="el" href="class_glue.html#a7cdf0fdb88e4395123fe7222b9a5abc5">Glue</a>.</p>
 
 </div>
 </div>
@@ -236,6 +340,25 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0d0ebd307d19949bd1a0201b04ff4957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d0ebd307d19949bd1a0201b04ff4957">&#9670;&nbsp;</a></span>RandPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f Collectable::RandPos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Randomize a position of the collectable to respawn it. </p>
+
+</div>
+</div>
 <a id="ac425bb27c527e22cbd7f7c241b8fafdd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac425bb27c527e22cbd7f7c241b8fafdd">&#9670;&nbsp;</a></span>Render()</h2>
 
@@ -250,6 +373,48 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e6fb05cab75d7172ce975bc983435c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e6fb05cab75d7172ce975bc983435c5">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Collectable::Update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_collectable.html">Collectable</a> Update Function. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af7a66926f841fa9d655b4460684f9ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7a66926f841fa9d655b4460684f9ed5">&#9670;&nbsp;</a></span>c_obj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::RectangleShape Collectable::c_obj</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

@@ -17,7 +17,6 @@ Snake::Snake(std::string name, sf::Texture& dir, sf::Vector2f spawnPos):s_name(n
     s_head.setTexture(&dir,true);
     m_texture = dir;
     addSegment(4); //Start the snake with a few segments
-    //setColour();
 
     //ctor
 }
@@ -33,18 +32,13 @@ Snake::~Snake()
     //dtor
 }
 
-void Snake::ResetSpawn()
-{
-    s_head.setPosition(respawnPos);
-}
 
 void Snake::Reset()
 {
-    rClock.restart();
+    //rClock.restart();
     s_dir = eDir::eNorth;
     s_score = 0;
     s_glue = 0;
-    s_head.setPosition(respawnPos);
 
     while(Segments.size()!=0)
     {
@@ -52,14 +46,14 @@ void Snake::Reset()
     }
 
     s_head.setPosition(respawnPos);
+    s_pos = respawnPos;
     isHidden = false;
     isDead = false;
     colClock.restart();
     clock.restart();
     gClock.restart();
-
-
-    //addSegment(4);
+    //isResetting = true;
+    addSegment(4);
 
 }
 
@@ -102,20 +96,6 @@ std::string Snake::getGlue() //Returns the Score into a string
     return showglue.str();
 }
 
-void Snake::setColour() //Sets random colour for RGB (Currently Unused)
-{
-    srand(time(NULL));
-    int iR=rand() % 155 + 100;
-    int iG=rand() % 155 + 100;
-    int iB=rand() % 155 + 100;
-
-#ifdef OS_Windows // This is a test
-    s_head.setFillColor(sf::Color(iR,iG,iB,255));
-#else
-    s_head.setFillColor(sf::Color(iR,iG,iB,255));
-#endif
-}
-
 void Snake::setDirection(eDir dir)
 {
     s_dir = dir;
@@ -123,13 +103,12 @@ void Snake::setDirection(eDir dir)
 
 void Snake::Update()
 {
-    if(colClock.getElapsedTime().asSeconds() > 3)
+
+    if(colClock.getElapsedTime().asSeconds() > 2)
     {
         ColliderActive = true;
         setinittextures = false;
     }
-    //std::cout<<clock.getElapsedTime().asMilliseconds();
-//    if(isDead() == false)
     if(!isDead)
     {
         SegmentCollider();

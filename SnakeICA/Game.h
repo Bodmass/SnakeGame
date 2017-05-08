@@ -42,22 +42,20 @@ private:
     ///Create the game's UI (Score, Timer, Glue)
     void createUI();
     ///Update the game's UI
-    void updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2Text, sf::Texture OLTexture, sf::Sprite OL, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText);
+    void updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2Text, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText);
     ///Create the window to render to
     sf::RenderWindow m_window;
-    ///Create the player snake
-    //Snake m_snake, m_snake2;
     ///Check the Collisions with the Snake and walls.
     bool CheckCollisions(Snake* snake);
     ///Timer Clock for the Main Game
     sf::Clock MainClock;
-    ///
+    ///Clock to remember the Timer when its gameover
     int HoldClock = 0;
     ///Textures Vector for the Collectable
     std::vector<sf::Texture> Textures;
-    ///Snake Vector
+    ///Vector to Create the player snakes
     std::vector<Snake> m_Snakes;
-    ///
+    ///Boolean to set gameover
     bool gameover = false;
 
 };

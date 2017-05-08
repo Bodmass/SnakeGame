@@ -24,15 +24,10 @@ public:
     virtual ~Snake();
     ///Render's Snake to the specified Render Window
     void Render (sf::RenderWindow &window);
-    ///
+    ///Reset the Snake back to how it started
     void Reset();
-    ///
-    void ResetSpawn();
-    //sf::RectangleShape getHead();
     ///Snakes Update Function
     void Update();
-    ///Sets the colour of the Snake
-    void setColour();
     ///Sets the Direction of the snake (North, East, South, West)
     void setDirection(eDir dir);
     ///Returns the position of the snake's head
@@ -56,15 +51,15 @@ public:
     int getScoreI();
     ///Return the glue amount eaten by the snake
     std::string getGlue();
-    ///
+    ///Return the name of the snake (Used by the Win Scenario)
     std::string getName();
     ///Accumulate Glue
     int eatGlue(int amount);
     ///Use the glue and reset the glue clock
     void useGlue();
-    ///
+    ///Return the Segments List
     std::list<sf::RectangleShape*> getSegements();
-    ///
+    ///Hide the Snake for the gameover screen
     void goHide();
 
 
@@ -88,7 +83,7 @@ private:
     int s_glue{0};
     ///Snake death state
     bool isDead = false;
-    ///
+    ///Remember the spawn location used when using push_back for the snake.
     sf::Vector2f respawnPos;
     ///Texture for Segments
     sf::Texture m_texture;
@@ -100,6 +95,8 @@ private:
     bool setinittextures = true;
     ///
     bool isHidden = false;
+    ///
+    bool isResetting = false;
 
 };
 

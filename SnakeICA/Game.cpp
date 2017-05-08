@@ -20,88 +20,86 @@ Game::~Game()
 void Game::createUI()
 {
     //std::cout<<"Constructing UI"<<std::endl;
-    sf::Texture OLTexture;
-    if (!OLTexture.loadFromFile("Textures/Overlay.png"))
-    {
 
-    }
-    sf::Sprite OL(OLTexture);
     sf::Font font;
+    // Load it from a file
     if (!font.loadFromFile("pxl.ttf"))
     {
-
+        // error...
     }
-    //return EXIT_FAILURE;
-    //Glue Title
+
+    //Player 1 Glue Title
 
     sf::Text GlueText("GLUE", font, 35);
     GlueText.setColor(sf::Color::White);
     GlueText.setPosition(50, 535);
 
-    //Player Score
+    //Player Score Title Text
     sf::Text PlayerSText("Player 1 Score", font, 35);
     PlayerSText.setColor(sf::Color::White);
     PlayerSText.setPosition(50, 460);
 
+    //Player1 Score
     sf::Text PlayerScore(m_Snakes[0].getScore(), font, 35);
     PlayerScore.setColor(sf::Color::White);
     PlayerScore.setPosition(115, 490);
 
+    //Player 1 Glue Amount
     sf::Text PlayerGlueText(m_Snakes[0].getGlue(), font, 35);
     PlayerGlueText.setColor(sf::Color::White);
     PlayerGlueText.setPosition(115, 535);
 
 
-    //AI Score
+    //Player2 Score Title Text
     sf::Text PlayerS2Text("Player 2 Score", font, 35);
     PlayerS2Text.setColor(sf::Color::White);
     PlayerS2Text.setPosition(600, 460);
 
+    //Player2 Score
     sf::Text Player2Score(m_Snakes[1].getScore(), font, 35);
     Player2Score.setColor(sf::Color::White);
     Player2Score.setPosition(600, 490);
 
+    //Player 2 Glue Title
     sf::Text Player2GlueTitle("GLUE", font, 35);
     Player2GlueTitle.setColor(sf::Color::White);
     Player2GlueTitle.setPosition(550, 535);
 
+    //Player 2 Glue Amount
     sf::Text Player2GlueText(m_Snakes[1].getGlue(), font, 35);
     Player2GlueText.setColor(sf::Color::White);
     Player2GlueText.setPosition(615, 535);
 
-    //Timer
+    //Timer Title
     sf::Text TimerTitle("TIME", font, 45);
     TimerTitle.setColor(sf::Color::White);
     TimerTitle.setPosition(380, 475);
 
-    sf::Text Winner1Text("The Winner is the " + m_Snakes[0].getName(), font, 45);
-    Winner1Text.setColor(sf::Color::White);
-    Winner1Text.setPosition(160, 200);
-
-    sf::Text Winner2Text("The Winner is the " + m_Snakes[1].getName(), font, 45);
-    Winner2Text.setColor(sf::Color::White);
-    Winner2Text.setPosition(200, 200);
-
-    sf::Text WinnerDraw("DRAW!", font, 45);
-    WinnerDraw.setColor(sf::Color::White);
-    WinnerDraw.setPosition(370, 200);
-
-
-    //int count = 1;
-
-    //std::string timeshow = std::to_string(90);
-
+    //Timer
     sf::Text TimerText("90", font, 45); //reduce to 0
     TimerText.setColor(sf::Color::White);
     TimerText.setPosition(390, 525);
 
+    //Player 1 Wins
+    sf::Text Winner1Text("The Winner is the " + m_Snakes[0].getName(), font, 45);
+    Winner1Text.setColor(sf::Color::White);
+    Winner1Text.setPosition(160, 200);
 
+    //Player 2 Wins
+    sf::Text Winner2Text("The Winner is the " + m_Snakes[1].getName(), font, 45);
+    Winner2Text.setColor(sf::Color::White);
+    Winner2Text.setPosition(200, 200);
 
-    updateUI(WinnerDraw, Winner1Text, Winner2Text, OLTexture, OL, TimerText, TimerTitle, PlayerS2Text, PlayerScore, PlayerSText, GlueText, PlayerGlueText, Player2Score, Player2GlueTitle, Player2GlueText);
+    //Its a draw
+    sf::Text WinnerDraw("DRAW!", font, 45);
+    WinnerDraw.setColor(sf::Color::White);
+    WinnerDraw.setPosition(370, 200);
+
+    updateUI(WinnerDraw, Winner1Text, Winner2Text, TimerText, TimerTitle, PlayerS2Text, PlayerScore, PlayerSText, GlueText, PlayerGlueText, Player2Score, Player2GlueTitle, Player2GlueText);
 
 }
 
-void Game::updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2Text, sf::Texture OLTexture, sf::Sprite OL, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText)
+void Game::updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2Text, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText)
 {
 
     //Makes the Main Clock of the game count down
@@ -121,6 +119,7 @@ void Game::updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2T
     }
     else
         TimerText.setString(toString(90-(int)(HoldClock)));
+
     //Drawing all the UI to the screen
     if(!gameover)
     {
@@ -137,17 +136,32 @@ void Game::updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2T
     m_window.draw(TimerText);
     m_window.draw(Player2Score);
 
-    //m_window.draw(OL);
-
     if(gameover)
     {
-        //std::cout<<"Overlay being drawn"<<std::endl;
-        //m_window.draw(OL);
+        /*
+                //Draw the GameOver Text\\
+
+            If a Snake dies, the other Snake wins
+            If both snakes (head on collision) the one with the higher score wins
+            If both snakes die and have the same score, its a draw
+            If the timer runs out, the snake with the higher score wins
+            If the timer runs out and have they have the same score, its a draw
+
+        */
         if(m_Snakes[0].checkDeath() && !m_Snakes[1].checkDeath())
             m_window.draw(Winner2Text);
         if(!m_Snakes[0].checkDeath() && m_Snakes[1].checkDeath())
             m_window.draw(Winner1Text);
         if(m_Snakes[0].checkDeath() && m_Snakes[1].checkDeath())
+            {
+            if(m_Snakes[0].getScoreI()>m_Snakes[1].getScoreI() && m_Snakes[0].getScoreI()!=m_Snakes[1].getScoreI()  )
+               m_window.draw(Winner1Text);
+            if(m_Snakes[1].getScoreI()>m_Snakes[0].getScoreI() && m_Snakes[0].getScoreI()!=m_Snakes[1].getScoreI())
+                m_window.draw(Winner2Text);
+            if(m_Snakes[0].getScoreI()==m_Snakes[1].getScoreI() )
+                m_window.draw(WinnerDraw);
+            }
+        if(!m_Snakes[0].checkDeath() && !m_Snakes[1].checkDeath())
             {
             if(m_Snakes[0].getScoreI()>m_Snakes[1].getScoreI() && m_Snakes[0].getScoreI()!=m_Snakes[1].getScoreI()  )
                m_window.draw(Winner1Text);
@@ -176,6 +190,7 @@ void Game::processEvents()
             //std::cout<<"checking what key was pressed";
             switch(event.key.code)
             {
+            //PLAYER 1
             case sf::Keyboard::D:
                 //std::cout << "Direction set to Right" << std::endl;
                 m_Snakes[0].setDirection(eDir::eWest);
@@ -195,6 +210,7 @@ void Game::processEvents()
             case sf::Keyboard::Space:
                 m_Snakes[0].useGlue();
                 break;
+            //PLAYER 2
             case sf::Keyboard::Right:
                 //std::cout << "Direction set to Right" << std::endl;
                 m_Snakes[1].setDirection(eDir::eWest);
@@ -245,21 +261,18 @@ void Game::render()
     }
     m_Snakes[0].Render(m_window);
     m_Snakes[1].Render(m_window);
-    //Fruit.Render(m_window);
     m_window.display();
 }
 
 void Game::update()
 {
     CheckEnd();
-    if(gameover)
+    if(gameover) //if its Game Over, don't run this function for no reason
     {
-        //m_Snakes[0].ResetSpawn();
-        //m_Snakes[1].ResetSpawn();
         return;
     }
     sf::sleep(sf::Time(sf::milliseconds(10)));
-    if(m_Snakes[0].checkDeath() || m_Snakes[1].checkDeath() && !gameover)
+    if(m_Snakes[0].checkDeath() || m_Snakes[1].checkDeath() && !gameover) //Set Game Over if anyone is dead
     {
         gameover = true;
     }
@@ -272,8 +285,7 @@ void Game::update()
         Collectables[i]->Update();
         if(Collectables[i]->isEaten())
         {
-            //Collectables.erase(Collectables.begin() + i);
-            Collectables[i]->CollectableInactive();
+            Collectables[i]->CollectableInactive(); //Deactivate collectables
 
         }
     }
@@ -302,14 +314,6 @@ bool Game::CheckCollisions(Snake* snake)
     {
         if(snake==&otherSnake)
             break;
-        for(sf::RectangleShape* Shape:otherSnake.getSegements()) //Loop through the Segments List
-        {
-            if(snake->getHead()->getGlobalBounds().intersects(Shape->getGlobalBounds())) //if the head intersects of the of segments
-            {
-                snake->hasDied(); //sets death state
-                return true;
-            }
-        }
         if(snake->getHead()->getGlobalBounds().intersects(otherSnake.getHead()->getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the walls, kill the snake.
         {
             if(!snake->checkDeath())
@@ -321,6 +325,28 @@ bool Game::CheckCollisions(Snake* snake)
             }
         }
     }
+
+    for(sf::RectangleShape* Shape:m_Snakes[1].getSegements()) //Loop through the Segments List
+    {
+        if(m_Snakes[0].getHead()->getGlobalBounds().intersects(Shape->getGlobalBounds())) //if the head intersects of the of segments
+        {
+            //std::cout<<"Touching other segment!"<<std::endl;
+            m_Snakes[0].hasDied(); //sets death state
+            return true;
+        }
+    }
+
+    for(sf::RectangleShape* Shape:m_Snakes[0].getSegements()) //Loop through the Segments List
+    {
+        if(m_Snakes[1].getHead()->getGlobalBounds().intersects(Shape->getGlobalBounds())) //if the head intersects of the of segments
+        {
+            //std::cout<<"Touching other segment!"<<std::endl;
+            m_Snakes[1].hasDied(); //sets death state
+            return true;
+        }
+    }
+
+
     for(sf::RectangleShape& Shape:Walls) //Loop through the walls
     {
         if(snake->getHead()->getGlobalBounds().intersects(Shape.getGlobalBounds())) //If the Snake Head has intersected the bounds of any of the walls, kill the snake.
@@ -353,29 +379,15 @@ void Game::CheckEnd()
     while(Collectables.size() != 0)
     {
 
-    for(int i = 0; i<Collectables.size(); i++) //Checks through all the current Collectables in the vector and checks if they've eaten, if they have been, remove it from the vector list.
+    for(int i = 0; i<Collectables.size(); i++) //Checks through all the Collectables and deletes them.
     {
         Collectables.erase(Collectables.begin() + i);
         }
     }
 
-    m_Snakes[0].goHide();
+    m_Snakes[0].goHide(); //Makes the Snakes no longer rendered
     m_Snakes[1].goHide();
     }
-/*
-    for(int i = 0; i<Walls.size(); i++) //Checks through all the current Collectables in the vector and checks if they've eaten, if they have been, remove it from the vector list.
-    {
-        Walls.erase(Walls.begin() + i);
-        }
-    }
-
-    for(int i = 0; i<m_Snakes.size(); i++) //Checks through all the current Collectables in the vector and checks if they've eaten, if they have been, remove it from the vector list.
-    {
-        m_Snakes.erase(m_Snakes.begin() + i);
-        }
-    }
-*/
-
 }
 
 void Game::Restart()
@@ -416,7 +428,7 @@ void Game::Run()
     Textures.back().loadFromFile("Textures/AISnake.png"); //Textures[6]
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Top
     Walls.back().setPosition(sf::Vector2f(0,0));
-    Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom
+    Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom2
     Walls.back().setPosition(sf::Vector2f(0,580));
     Walls.push_back(sf::RectangleShape(sf::Vector2f(800,20))); //Bottom
     Walls.back().setPosition(sf::Vector2f(0,440));
@@ -430,7 +442,7 @@ void Game::Run()
     Collectables.push_back(new Collectable("Strawberry", 40, 4, Textures[3], 20));
     Collectables.push_back(new Collectable("Kiwi", 80, 5, Textures[4], 25));
     Collectables.push_back(new Glue("Glue", 0, 0, Textures[5], 2));
-    m_Snakes.push_back(Snake("Red Rattlesnake", Textures[6], sf::Vector2f(200,200)));
+    m_Snakes.push_back(Snake("Red Rattlesnake", Textures[6], sf::Vector2f(200,200))); //Snake Vector (Name, Texture, Spawn Location)
     m_Snakes.push_back(Snake("Blue Boa", Textures[7], sf::Vector2f(600,200)));
 
 
