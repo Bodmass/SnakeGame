@@ -33,6 +33,11 @@ Snake::~Snake()
     //dtor
 }
 
+void Snake::ResetSpawn()
+{
+    s_head.setPosition(respawnPos);
+}
+
 void Snake::Reset()
 {
     rClock.restart();
@@ -128,7 +133,6 @@ void Snake::Update()
     if(!isDead)
     {
         SegmentCollider();
-
         if(gClock.getElapsedTime().asSeconds() > 1)
         {
             if(clock.getElapsedTime().asMilliseconds() > 100)  //Delay the Update every 100 milliseconds

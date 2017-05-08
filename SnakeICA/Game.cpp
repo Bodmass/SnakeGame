@@ -254,6 +254,8 @@ void Game::update()
     CheckEnd();
     if(gameover)
     {
+        //m_Snakes[0].ResetSpawn();
+        //m_Snakes[1].ResetSpawn();
         return;
     }
     sf::sleep(sf::Time(sf::milliseconds(10)));
@@ -386,6 +388,7 @@ void Game::Restart()
         Collectables.push_back(new Collectable("Strawberry", 40, 4, Textures[3], 20));
         Collectables.push_back(new Collectable("Kiwi", 80, 5, Textures[4], 25));
         Collectables.push_back(new Glue("Glue", 0, 0, Textures[5], 2));
+        MainClock.restart();
         m_Snakes[0].Reset();
         m_Snakes[1].Reset();
         gameover=false;

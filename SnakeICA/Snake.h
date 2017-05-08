@@ -26,6 +26,8 @@ public:
     void Render (sf::RenderWindow &window);
     ///
     void Reset();
+    ///
+    void ResetSpawn();
     //sf::RectangleShape getHead();
     ///Snakes Update Function
     void Update();
