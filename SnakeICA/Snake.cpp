@@ -11,6 +11,7 @@ Snake::Snake(std::string name, sf::Texture& dir, sf::Vector2f spawnPos):s_name(n
 {
     std::cout<<s_name<<" constructed."<<std::endl;
     s_head.setSize(sf::Vector2f(20,20));
+    respawnPos = spawnPos;
     s_head.setPosition(s_pos);
     //s_head.setFillColor(sf::Color::Red);
     s_head.setTexture(&dir,true);
@@ -32,6 +33,31 @@ Snake::~Snake()
     //dtor
 }
 
+void Snake::Reset()
+{
+    rClock.restart();
+    s_dir = eDir::eNorth;
+    s_score = 0;
+    s_glue = 0;
+    s_head.setPosition(respawnPos);
+
+    while(Segments.size()!=0)
+    {
+        Segments.pop_back();
+    }
+
+    s_head.setPosition(respawnPos);
+    isHidden = false;
+    isDead = false;
+    colClock.restart();
+    clock.restart();
+    gClock.restart();
+
+
+    //addSegment(4);
+
+}
+
 sf::Vector2f Snake::getPos() //Return the position of the snake
 {
     return s_pos;
@@ -50,6 +76,11 @@ std::string Snake::getScore() //Returns the Score into a string
     //std::string showscore = std::to_string(s_score);
 
     return showscore.str();
+}
+
+int Snake::getScoreI()
+{
+    return s_score;
 }
 
 std::string Snake::getGlue() //Returns the Score into a string
@@ -227,6 +258,15 @@ bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segment
     }
     return false;
 }
+std::string Snake::getName()
+{
+    return s_name;
+}
+void Snake::goHide()
+{
+    isHidden = true;
+    return;
+}
 
 //bool Snake::isDead()
 //{
@@ -241,6 +281,9 @@ bool Snake::SegmentCollider() //Sets up the colliders for the snakes own segment
 
 void Snake::Render(sf::RenderWindow &window)
 {
+    if(!isHidden)
+    {
+
     window.draw(s_head);
 
     if(setinittextures)
@@ -257,4 +300,5 @@ void Snake::Render(sf::RenderWindow &window)
         window.draw(*Snake);
     }
     //setColour();
+    }
 }

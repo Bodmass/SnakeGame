@@ -7,8 +7,8 @@ Collectable::Collectable(std::string name, int score, int grow, sf::Texture&dir,
     c_obj.setSize(sf::Vector2f(20,20));
     //float rx = (rand() %(680/20)) * 20 + 40;
     //float ry = (rand() %(300/20)) * 20 + 40;
-    c_pos.x = -20;
-    c_pos.y = -20;
+    c_pos.x = -40;
+    c_pos.y = -40;
     c_obj.setPosition(c_pos);
     //if (!CTexture.loadFromFile("Textures/Arena.png"))
     //std::cout<<"Loading Apple Texture Failed"<<std::endl;
@@ -36,8 +36,8 @@ Collectable::~Collectable()
 
 void Collectable::CollectableInactive()
 {
-    c_pos.x = -20;
-    c_pos.y = -20;
+    c_pos.x = -40;
+    c_pos.y = -40;
     c_obj.setPosition(c_pos);
 }
 

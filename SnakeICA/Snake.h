@@ -24,6 +24,8 @@ public:
     virtual ~Snake();
     ///Render's Snake to the specified Render Window
     void Render (sf::RenderWindow &window);
+    ///
+    void Reset();
     //sf::RectangleShape getHead();
     ///Snakes Update Function
     void Update();
@@ -46,16 +48,22 @@ public:
     void addSegment(unsigned int amount);
     ///Checks the collision with any of the Snake's Segments
     bool SegmentCollider();
-    ///Return the score of the snake
+    ///Return the string score of the snake
     std::string getScore();
+    ///Return the integer score of the snake
+    int getScoreI();
     ///Return the glue amount eaten by the snake
     std::string getGlue();
+    ///
+    std::string getName();
     ///Accumulate Glue
     int eatGlue(int amount);
     ///Use the glue and reset the glue clock
     void useGlue();
     ///
     std::list<sf::RectangleShape*> getSegements();
+    ///
+    void goHide();
 
 
 protected:
@@ -69,7 +77,7 @@ private:
     ///Setting movement speed (relative to snake size
     int snakespeed {20};
     ///Setting the clock and Collider clock (for snake spawn immunity to Segments) and 2 glueClocks (to stop the snake momentarily and limit eating)
-    sf::Clock clock, colClock, gClock, g2Clock;
+    sf::Clock clock, colClock, gClock, g2Clock, rClock;
     ///eDir variable for direction
     eDir s_dir = eDir::eNorth;
     ///Snakes Score
@@ -78,13 +86,18 @@ private:
     int s_glue{0};
     ///Snake death state
     bool isDead = false;
-    ///List of Segments
+    ///
+    sf::Vector2f respawnPos;
+    ///Texture for Segments
     sf::Texture m_texture;
+    ///List of Segments
     std::list<sf::RectangleShape*> Segments;
     ///Boolean for the Snake's Segment Immunity
     bool ColliderActive = false;
     ///Boolean to make sure the Segment Textures have loaded. Disable after Segment Immunity ends
     bool setinittextures = true;
+    ///
+    bool isHidden = false;
 
 };
 

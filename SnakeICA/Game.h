@@ -21,6 +21,8 @@ public:
     Game();
     ///Run the game
     void Run();
+    void Restart();
+    void CheckEnd();
     virtual ~Game();
     ///Check if the game is still running
     bool isRunning = true;
@@ -40,7 +42,7 @@ private:
     ///Create the game's UI (Score, Timer, Glue)
     void createUI();
     ///Update the game's UI
-    void updateUI(sf::Texture BGTexture, sf::Sprite BG, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText);
+    void updateUI(sf::Text WinnerDraw, sf::Text Winner1Text, sf::Text Winner2Text, sf::Texture OLTexture, sf::Sprite OL, sf::Text TimerText, sf::Text TimerTitle, sf::Text PlayerS2Text, sf::Text PlayerScore, sf::Text PlayerSText, sf::Text GlueText, sf::Text PlayerGlueText, sf::Text Player2Score, sf::Text Player2GlueTitle, sf::Text Player2GlueText);
     ///Create the window to render to
     sf::RenderWindow m_window;
     ///Create the player snake
@@ -55,6 +57,8 @@ private:
     std::vector<sf::Texture> Textures;
     ///Snake Vector
     std::vector<Snake> m_Snakes;
+    ///
+    bool gameover = false;
 
 };
 
