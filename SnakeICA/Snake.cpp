@@ -32,7 +32,10 @@ Snake::~Snake()
     //dtor
 }
 
-
+eDir Snake::getDirection()
+{
+    return s_dir;
+}
 void Snake::Reset()
 {
     //rClock.restart();
@@ -98,6 +101,27 @@ std::string Snake::getGlue() //Returns the Score into a string
 
 void Snake::setDirection(eDir dir)
 {
+    switch(dir)
+            {
+            case eDir::eEast:
+                if(getDirection() == eDir::eWest)
+                    return;
+                break;
+            case eDir::eWest:
+                if(getDirection() == eDir::eEast)
+                    return;
+                break;
+            case eDir::eNorth:
+                if(getDirection() == eDir::eSouth)
+                    return;
+                break;
+            case eDir::eSouth:
+                if(getDirection() == eDir::eNorth)
+                    return;
+                break;
+            default:
+                break;
+            }
     s_dir = dir;
 }
 

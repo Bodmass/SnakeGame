@@ -4,6 +4,7 @@ var searchData=
   ['game_2ecpp',['Game.cpp',['../_game_8cpp.html',1,'']]],
   ['game_2eh',['Game.h',['../_game_8h.html',1,'']]],
   ['getcollectable',['getCollectable',['../class_collectable.html#af5ea04b6de1dce93e3f1250c8089be6a',1,'Collectable']]],
+  ['getdirection',['getDirection',['../class_snake.html#a5390ed94d87ec256b4c5966d3566079e',1,'Snake']]],
   ['getglue',['getGlue',['../class_snake.html#a83edb0cee4d496482ed7a52f9f5fc335',1,'Snake']]],
   ['gethead',['getHead',['../class_snake.html#a769f621929281622cbd354c2bb132567',1,'Snake']]],
   ['getname',['getName',['../class_snake.html#af3145ef7cd798af32b814d63ceee0706',1,'Snake']]],

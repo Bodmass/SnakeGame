@@ -61,6 +61,9 @@ public:
     std::list<sf::RectangleShape*> getSegements();
     ///Hide the Snake for the gameover screen
     void goHide();
+    ///get the Direction the snake is facing
+    eDir getDirection();
+
 
 
 protected:
@@ -93,10 +96,8 @@ private:
     bool ColliderActive = false;
     ///Boolean to make sure the Segment Textures have loaded. Disable after Segment Immunity ends
     bool setinittextures = true;
-    ///
+    ///Boolean to hide snake
     bool isHidden = false;
-    ///
-    bool isResetting = false;
 
 };
 

@@ -192,7 +192,6 @@ void Game::processEvents()
             {
             //PLAYER 1
             case sf::Keyboard::D:
-                //std::cout << "Direction set to Right" << std::endl;
                 m_Snakes[0].setDirection(eDir::eWest);
                 break;
             case sf::Keyboard::A:
