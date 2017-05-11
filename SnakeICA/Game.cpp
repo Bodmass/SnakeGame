@@ -305,6 +305,7 @@ void Game::update()
         }
     }
 
+
 }
 
 bool Game::CheckCollisions(Snake* snake)
@@ -368,6 +369,8 @@ bool Game::CheckCollisions(Snake* snake)
             return true;
         }
     }
+
+    //delete snake;
     return false;
 }
 
