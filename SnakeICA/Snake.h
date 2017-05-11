@@ -77,7 +77,7 @@ private:
     ///Setting movement speed (relative to snake size
     int snakespeed {20};
     ///Setting the clock and Collider clock (for snake spawn immunity to Segments) and 2 glueClocks (to stop the snake momentarily and limit eating)
-    sf::Clock clock, colClock, gClock, g2Clock, rClock;
+    sf::Clock clock, colClock, gClock, g2Clock;
     ///eDir variable for direction
     eDir s_dir = eDir::eNorth;
     ///Snakes Score
